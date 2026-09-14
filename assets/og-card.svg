@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#11120f"/>
+  <circle cx="886" cy="258" r="220" fill="none" stroke="#f4f1e9" stroke-opacity=".14"/>
+  <circle cx="1018" cy="454" r="145" fill="none" stroke="#a88758" stroke-opacity=".7"/>
+  <path d="M608 468c145-106 180-294 365-315 90-10 113 57 166-79" fill="none" stroke="#f4f1e9" stroke-opacity=".36" stroke-dasharray="4 15"/>
+  <circle cx="608" cy="468" r="5" fill="#a88758"/><circle cx="973" cy="153" r="5" fill="#a88758"/><circle cx="1139" cy="74" r="5" fill="#a88758"/>
+  <text x="86" y="94" fill="#f4f1e9" font-family="Arial, sans-serif" font-size="22" letter-spacing="10">VAELYN</text>
+  <text x="86" y="238" fill="#a88758" font-family="Arial, sans-serif" font-size="20" letter-spacing="4">ZALLIA · BY VAELYN</text>
+  <text x="86" y="332" fill="#f4f1e9" font-family="Georgia, serif" font-size="70">Your wardrobe, understood</text>
+  <text x="86" y="412" fill="#f4f1e9" font-family="Georgia, serif" font-size="70">in the real world.</text>
+  <text x="88" y="522" fill="#c6c1b6" font-family="Arial, sans-serif" font-size="23">AI-native wardrobe operations · physically connected · evidence-grounded</text>
+</svg>
