@@ -1,0 +1,89 @@
+/* Shared Home-only composition. System, Operations and About do not load this. */
+/* The founder's full opening, not a condensed substitute. Three paragraphs give
+   identity, physical continuity and the owner's outcome their own reading beat. */
+.hero{min-height:max(800px,min(94svh,1000px));height:auto;--surface-deep:#0d201b;--scrim-rgb:13 32 27}
+.hero-copy{height:auto;min-height:inherit;padding-block:calc(var(--header-height) + 56px) 58px}
+.hero::after{background:linear-gradient(90deg,rgb(var(--scrim-rgb)/96%) 0%,rgb(var(--scrim-rgb)/92%) 28%,rgb(var(--scrim-rgb)/74%) 43%,transparent 64%)}
+.hero h1{font-size:clamp(50px,4.2vw,72px);line-height:1.09;max-width:650px;letter-spacing:0;text-wrap:initial}
+.hero h1{position:relative;top:-72px}
+.hero-description{max-width:510px;margin-top:28px}
+.hero-description p{font-size:15px;line-height:1.7;color:var(--white);text-wrap:pretty}
+.hero-description .lead{font-size:16px;line-height:1.7;max-width:none;margin:0;color:var(--white)}
+.hero-description p+p{margin-top:17px}
+.hero-actions{margin-top:26px}
+@media(min-width:1700px){
+ .hero-description{max-width:550px}
+ .hero-description p{font-size:16px}
+ .hero-description .lead{font-size:17px}
+}
+@media(min-width:801px) and (max-width:1100px){
+ .hero{min-height:850px}
+ .hero h1{font-size:49px;max-width:510px}
+ .hero-description{max-width:420px}
+ .hero-description p{font-size:14.5px}
+ .hero-description .lead{font-size:15.5px}
+}
+@media(max-width:800px){
+ .hero h1{top:-18px}
+ .hero{height:auto;min-height:0}
+ .hero-copy{padding-block:38px 36px}
+ .hero h1{font-size:clamp(40px,6.5vw,56px);max-width:650px}
+ .hero-description{max-width:620px;margin-top:24px}
+ .hero-description p{font-size:15px;line-height:1.65}
+ .hero-description .lead{font-size:16px}
+ .hero-actions{margin-top:24px}
+}
+@media(max-width:600px){
+ .hero-copy{padding-block:30px}
+ .hero h1{font-size:clamp(34px,8.7vw,49px);line-height:1.08}
+ .hero h1 br{display:initial}
+ .hero-description{margin-top:23px}
+ .hero-description p{font-size:14px;line-height:1.65}
+ .hero-description .lead{font-size:15px;line-height:1.65}
+ .hero-description p+p{margin-top:15px}
+}
+/* Keep the supplied 4:3 room intact, particularly the tall integrated surface.
+   No duplicate UI overlay and no fake resolution increase. */
+.hero-architecture{left:auto;right:0;top:50%;width:max(70cqw,133.333333cqh);aspect-ratio:4/3;transform:translateY(-50%);mask-image:linear-gradient(90deg,transparent,#000 12%)}
+@media(max-width:800px){
+  .hero-art{height:auto;aspect-ratio:4/3}
+  .hero-architecture{inset:0;width:100%;height:100%;transform:none;mask-image:none}
+}
+.owner-discovery .discovery-scene{min-height:490px;min-width:0;margin:0}
+.owner-discovery .discovery-scene>img{object-position:71% center}
+.discovery-scene::after{content:"";position:absolute;inset:auto 0 0;height:120px;background:linear-gradient(transparent,rgb(var(--scrim-rgb)/82%));pointer-events:none}
+.discovery-caption{position:absolute;z-index:1;left:32px;bottom:26px;max-width:calc(100% - 64px);font:27px/1.2 var(--serif);color:var(--white);text-shadow:var(--image-shadow)}
+.owner-physical{grid-template-columns:57% 43%;background:var(--surface-soft)}
+.owner-physical .story-copy{padding:52px 14% 52px 12%}
+.owner-physical .movement-scene{min-height:490px}
+.owner-physical .movement-notice{right:4%;top:auto;bottom:25px}
+.owner-readiness{background:var(--surface-deep);color:var(--white);border-bottom:0}
+.owner-readiness .section-label,.owner-readiness .story-copy>p{color:var(--inverse-muted)}
+.owner-readiness .story-copy h2{max-width:355px}
+.readiness-scene{margin:0;display:grid;grid-template-rows:auto auto;align-content:center;min-width:0;background:var(--surface-deep)}
+.readiness-photo{width:100%;height:auto;aspect-ratio:1.6;object-fit:cover;object-position:47% center}
+.readiness-caption{display:flex;align-items:center;justify-content:space-between;gap:12px 22px;padding:20px 27px;background:var(--surface-deep);color:var(--white);border-top:1px solid var(--line-inverse)}
+.readiness-caption>span{font:25px/1.2 var(--serif)}
+.readiness-caption p{display:flex;gap:9px;align-items:center;font:12.5px/1.6 var(--sans);color:var(--inverse-muted)}
+.readiness-caption svg{width:16px;height:16px;flex:0 0 16px}
+
+@media(max-width:1100px) and (min-width:601px){
+  .owner-discovery .story-copy{padding-left:12%;padding-right:25px}
+  .owner-physical .story-copy{padding-left:10%;padding-right:12%}
+  .readiness-caption{display:block;padding:19px 23px}
+  .readiness-caption p{margin-top:9px}
+}
+@media(max-width:600px){
+  .owner-discovery .discovery-scene{min-height:320px}
+  .owner-discovery .discovery-scene>img{object-position:70% center}
+  .discovery-caption{left:var(--gutter);bottom:23px;max-width:calc(100% - 2 * var(--gutter));font-size:25px}
+  .owner-physical{grid-template-columns:1fr}
+  .owner-physical .story-copy{grid-row:1;padding:33px var(--gutter) 35px}
+  .owner-physical .movement-scene{min-height:320px}
+  .owner-physical .movement-notice{right:17px;bottom:19px}
+  .readiness-scene{min-height:0}
+  .readiness-photo{height:auto;aspect-ratio:1.15;object-position:47% center}
+  .readiness-caption{display:block;padding:21px var(--gutter) 24px}
+  .readiness-caption>span{font-size:26px}
+  .readiness-caption p{font-size:12px;margin-top:10px}
+}
