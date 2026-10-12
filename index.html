@@ -24,7 +24,9 @@
 <link href="shared/home.css" rel="stylesheet"/>
 <link href="shared/cinematic.css" rel="stylesheet"/><script defer="True" src="shared/cinematic.js"></script><link href="assets/departure/departure.css" rel="stylesheet"/>
 <link href="assets/owner-hero/interface-motion.css" rel="stylesheet"/>
-<script src="assets/owner-hero/interface-motion.js" defer></script></head>
+<script src="assets/owner-hero/interface-motion.js" defer></script>
+<link href="shared/film.css" rel="stylesheet"/>
+<script defer="" src="shared/film.js"></script></head>
 <body class="home v2-experience">
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
@@ -50,6 +52,37 @@ One intelligent system.</h1>
 <p>Discreet sensing keeps it connected as your pieces move across residences, yachts and journeys. Its intelligence brings your collection together with your plans, curating pieces for any destination or occasion and coordinating their preparation.</p>
 </div>
 </div>
+</section>
+<section aria-label="Film" class="film-band" data-film="" id="film">
+<div class="film-frame">
+<!-- The film: to swap the cut, replace these three files in assets/film/ (or edit the poster and two sources here). -->
+<video aria-describedby="film-description" class="film-video" height="824" muted="" playsinline="" poster="assets/film/zallia-film-poster.webp" preload="metadata" width="1920">
+<source src="assets/film/zallia-film.webm" type="video/webm"/>
+<source src="assets/film/zallia-film.mp4" type="video/mp4"/>
+</video>
+<p class="film-description" id="film-description">A short film without dialogue. In a dressing room at the Dubai Residence, a tourbillon watch is taken from its drawer, and Zallia notes that it has left the dressing room. Later, aboard M/Y Aurora, the same watch is recorded as now aboard, and a suede handbag is taken from the yacht’s dressing room. It closes on the line: The record that keeps itself.</p>
+<div class="film-controls">
+<button class="film-control film-toggle" data-film-toggle="" type="button" aria-label="Play film"><span data-icon=""><i aria-hidden="true" data-lucide="play"></i></span><span class="film-control-label">Play film</span></button>
+<button aria-label="Turn sound on" aria-pressed="false" class="film-control film-sound" data-film-sound="" type="button"><span data-icon=""><i aria-hidden="true" data-lucide="volume-x"></i></span></button>
+</div>
+</div>
+</section>
+<section aria-labelledby="known-title" class="known-band" data-known-motion="" id="known">
+<div class="known-copy">
+<p class="section-label">More than where it is</p>
+<h2 id="known-title">Each piece,<br/>
+known in full.</h2>
+<p>Its papers, its service history, its condition and the care it is due. Kept current as it moves, without asking anything of you.</p>
+</div>
+<figure class="known-piece">
+<img alt="A rose-gold tourbillon wristwatch with a deep blue aventurine dial on a dark blue strap." class="known-watch" decoding="async" height="1310" loading="lazy" sizes="(max-width: 600px) 56vw, (max-width: 1100px) 300px, clamp(280px, 24vw, 420px)" src="assets/known/known-watch-480.webp" srcset="assets/known/known-watch-480.webp 480w, assets/known/known-watch-960.webp 960w" width="838"/>
+<figcaption class="known-notes">
+<p class="known-note known-note--piece"><span class="known-note-label">The piece</span>Tourbillon in rose gold. Reference, serial, box and papers, all on record.</p>
+<p class="known-note known-note--service"><span class="known-note-label">Service</span>Last serviced by the maker in March 2025. Next due in 2030.</p>
+<p class="known-note known-note--condition"><span class="known-note-label">Condition</span>Inspected in September, on its return. No change noted.</p>
+<p class="known-note known-note--place"><span class="known-note-label">Whereabouts</span>Aboard M/Y Aurora. Before that, the dressing room at the Dubai Residence.</p>
+</figcaption>
+</figure>
 </section>
 <section aria-labelledby="personal-title" class="story-band owner-discovery" id="personal">
 <div class="story-copy">
@@ -101,6 +134,7 @@ your plans.</h2>
 <div class="footer-main">
 <div class="footer-brand">
 <a aria-label="Zallia home" class="wordmark" href="index.html">ZALLIA</a>
+<p class="footer-status">Zallia is in development, approaching initial pilots.</p>
 <p>Zallia by Vaelyn · © 2026</p>
 </div>
 </div>

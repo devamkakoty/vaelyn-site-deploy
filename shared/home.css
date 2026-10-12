@@ -87,3 +87,76 @@
   .readiness-caption>span{font-size:26px}
   .readiness-caption p{font-size:12px;margin-top:10px}
 }
+
+@property --note-in{syntax:"<number>";inherits:true;initial-value:1}
+@property --note-line{syntax:"<number>";inherits:true;initial-value:1}
+/* Section 3 — Each piece, known in full. Warm limestone after the dark film:
+   one watch, four quiet notes joined to it by hairlines. No cards, no UI chrome. */
+.known-band{position:relative;display:grid;grid-template-columns:31% 69%;align-items:center;
+  padding:clamp(72px,8vw,128px) var(--gutter) clamp(72px,8vw,120px);
+  background:radial-gradient(ellipse 48% 62% at 66% 52%,#f5f1e9 0%,rgb(245 241 233 / 0%) 70%),linear-gradient(115deg,#ece6dc,#e4dbcf);color:var(--ink)}
+.known-copy{padding-right:6%;min-width:0}
+.known-copy h2{font-size:clamp(44px,3.9vw,64px);line-height:1.04;margin-bottom:26px}
+.known-copy>p:not(.section-label){font-size:15px;line-height:1.7;color:var(--muted);max-width:350px;text-wrap:pretty}
+.known-piece{--note-gap:clamp(22px,2.4vw,40px);--leader:clamp(48px,4.6vw,76px);margin:0;min-width:0;display:grid;
+  grid-template-columns:minmax(0,1fr) clamp(260px,24vw,420px) minmax(0,1fr);grid-template-rows:1fr 1fr;column-gap:var(--note-gap)}
+.known-watch{grid-column:2;grid-row:1/3;width:100%;height:auto;position:relative;z-index:1;
+  filter:drop-shadow(0 30px 34px rgb(37 45 41 / 20%)) drop-shadow(0 6px 10px rgb(37 45 41 / 10%))}
+.known-notes{display:contents}
+.known-note{position:relative;z-index:2;max-width:250px;font-size:13.5px;line-height:1.65;color:var(--ink);text-wrap:pretty}
+.known-note-label{display:block;margin-bottom:9px;font:10px/1.5 var(--sans);letter-spacing:1.6px;text-transform:uppercase;color:var(--green)}
+/* The section's own padding gives the breath after the film; a separate
+   chapter band would show as a seam against the limestone gradient. */
+#main>.known-band:not(:first-child){border-block-start-width:0}
+/* Hairline from the label towards the watch, ending in a small point on it. */
+.known-note::before,.known-note::after{content:"";position:absolute;top:7px;pointer-events:none}
+.known-note::before{width:var(--leader);height:1px;background:rgb(68 93 84 / 42%)}
+.known-note::after{width:5px;height:5px;margin-top:-2px;border-radius:50%;background:var(--green)}
+.known-note--piece,.known-note--condition{grid-column:1;justify-self:end;text-align:right}
+.known-note--service,.known-note--place{grid-column:3;justify-self:start}
+.known-note--piece::before,.known-note--condition::before{left:calc(100% + 14px);transform-origin:left center}
+.known-note--piece::after,.known-note--condition::after{left:calc(100% + 14px + var(--leader))}
+.known-note--service::before,.known-note--place::before{right:calc(100% + 14px);transform-origin:right center}
+.known-note--service::after,.known-note--place::after{right:calc(100% + 14px + var(--leader))}
+.known-note--piece{grid-row:1;align-self:start;margin-top:14%}
+.known-note--service{grid-row:1;align-self:start;margin-top:30%}
+.known-note--condition{grid-row:2;align-self:end;margin-bottom:28%}
+.known-note--place{grid-row:2;align-self:end;margin-bottom:12%}
+/* The record resolves note by note when the section is seen (cinematic.js);
+   these custom properties carry that finite motion, and default to complete. */
+.known-note{opacity:var(--note-in,1);transform:translateY(calc((1 - var(--note-in,1)) * 6px))}
+.known-note::before{scale:var(--note-line,1) 1}
+.known-note::after{opacity:var(--note-line,1)}
+
+/* Home-only footer status: honest, quiet, and part of the brand line. */
+.home .footer-status{order:0;flex:1 1 auto;text-align:center;color:#53605c;white-space:normal}
+.home .footer-brand>p:last-child{order:1}
+
+@media(min-width:1700px){
+  .known-copy>p:not(.section-label){font-size:16px;max-width:390px}
+  .known-note{font-size:14.5px;max-width:280px}
+}
+/* Tablet: the copy leads, the watch and its notes follow at full width. */
+@media(max-width:1099px){
+  .known-band{grid-template-columns:1fr;row-gap:clamp(44px,6vw,64px);padding:clamp(56px,8vw,88px) var(--gutter)}
+  .known-copy{padding:0;max-width:560px}
+  .known-copy>p:not(.section-label){max-width:460px}
+  .known-piece{grid-template-columns:minmax(0,1fr) 300px minmax(0,1fr);--leader:44px;--note-gap:24px}
+  .known-note{font-size:13px;max-width:220px}
+}
+/* Phones: the watch alone, then its notes as a calm two-by-two record. */
+@media(max-width:700px){
+  .known-band{row-gap:36px;padding-block:52px 48px}
+  .known-copy h2{font-size:clamp(36px,10vw,46px);margin-bottom:20px}
+  .known-copy>p:not(.section-label){font-size:14px}
+  .known-piece{display:block}
+  .known-watch{width:min(56vw,280px);margin:0 auto 34px}
+  .known-notes{display:grid;grid-template-columns:1fr 1fr;gap:26px 22px}
+  .known-note{grid-column:auto;grid-row:auto;justify-self:stretch;align-self:start;max-width:none;margin:0;padding-top:14px;border-top:1px solid rgb(68 93 84 / 24%);text-align:left;font-size:13px}
+  .known-note::before,.known-note::after{display:none}
+  .known-note-label{margin-bottom:7px}
+  .home .footer-status{order:2;flex-basis:100%;text-align:left;padding-bottom:10px}
+}
+@media(max-width:360px){
+  .known-notes{grid-template-columns:1fr;gap:20px}
+}

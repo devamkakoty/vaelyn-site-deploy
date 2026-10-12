@@ -1,0 +1,51 @@
+/* Section 2 — the film. Home only.
+   The film opens and closes on the site's deep evergreen, so its band uses the
+   same jade-textured surface: letterboxing reads as material, not as an empty bar.
+   The whole frame is always shown (never cropped), at its native 1920 / 824. */
+.film-band{--chapter-surface:var(--surface-deep);--focus-ring:var(--focus-dark);position:relative;
+  background:linear-gradient(rgb(13 32 27 / 72%),rgb(13 32 27 / 72%)),var(--jade-texture) center/cover,#0d201b;
+  color:var(--white)}
+.film-frame{position:relative;width:100%;margin-inline:auto;aspect-ratio:1920/824;background:#0d201b;
+  /* On very wide or short screens keep the whole frame below the header. */
+  max-width:calc((100svh - var(--header-height)) * 1920 / 824)}
+.film-video{display:block;width:100%;height:100%;object-fit:contain;background:#0d201b}
+.film-description{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;
+  clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+
+/* Controls share the hero's interface-motion-toggle language: small, round,
+   quiet glass. A wider invisible hit area keeps touch targets at 44px+. */
+.film-controls{position:absolute;right:18px;bottom:18px;z-index:2;display:flex;gap:10px}
+.film-control{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  min-width:34px;height:34px;padding:0 9px;border:1px solid #fff5;border-radius:999px;
+  background:#17211c99;color:#f4f0e6;font:500 11px/1 var(--sans);letter-spacing:.2px;
+  transition:background var(--interaction-duration) var(--ease-out),border-color var(--interaction-duration) var(--ease-out)}
+.film-control::before{content:"";position:absolute;inset:-6px}
+.film-control:hover{background:#17211cd9;border-color:#fff9}
+.film-control svg{width:14px;height:14px;display:block}
+.film-control:focus-visible{outline:2px solid #f4d483;outline-offset:3px}
+.film-control-label{display:none}
+/* Before any motion (reduced motion, Save-Data, or autoplay declined), the
+   play control names itself so the poster is clearly a film to be played. */
+.film-band[data-film-state="ready"] .film-toggle{padding:0 14px 0 12px}
+.film-band[data-film-state="ready"] .film-toggle .film-control-label{display:inline}
+@supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .film-control{backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+}
+@media(prefers-reduced-transparency:reduce),(prefers-contrast:more){
+  .film-control{background:#17211c;backdrop-filter:none;-webkit-backdrop-filter:none}
+}
+
+/* Phones and tablets: the full wide frame, letterboxed on jade with a little air,
+   so the film is a deliberate band rather than a thin strip. */
+@media(max-width:800px){
+  .film-band{padding-block:clamp(22px,6vw,40px)}
+  .film-controls{right:12px;bottom:10px;gap:8px}
+  .film-control{min-width:30px;height:30px;padding:0 7px}
+  .film-control::before{inset:-8px}
+  .film-control svg{width:13px;height:13px}
+}
+@media(max-width:480px){
+  /* Below the frame on small phones, so controls never sit over the picture. */
+  .film-band{padding-bottom:58px}
+  .film-controls{top:calc(100% + 14px);bottom:auto;right:var(--gutter)}
+}

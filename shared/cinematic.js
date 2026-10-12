@@ -267,7 +267,81 @@
     });
   }
 
+
+  /* Home, Section 3: the record of one piece resolves note by note when seen,
+   * showing that its details are held together with it. Finite; paused when
+   * unseen; replays only after the section has been left and revisited. */
+  function resolvingRecord() {
+    const root = document.querySelector("[data-known-motion]");
+    if (!root || !("IntersectionObserver" in window) ||
+        typeof Element.prototype.animate !== "function") return;
+    const notes = [...root.querySelectorAll(".known-note")];
+    if (!notes.length) return;
+    let animations = [];
+    let complete = false;
+    let visible = false;
+    let leftAt = 0;
+
+    // Armed (paused at its first frame) as the section approaches, so the notes
+    // never show complete and then vanish when the resolve begins.
+    function arm() {
+      if (constrained() || animations.length || complete) return;
+      animations = notes.flatMap((note, index) => {
+        const delay = 260 + index * 520;
+        return [
+          note.animate([{"--note-line":"0"},{"--note-line":"1"}],
+            {duration:620, delay, fill:"both", easing:"cubic-bezier(.22,.61,.36,1)"}),
+          note.animate([{"--note-in":"0"},{"--note-in":"1"}],
+            {duration:720, delay:delay + 300, fill:"both", easing:"cubic-bezier(.22,.61,.36,1)"}),
+        ];
+      });
+      animations.forEach(animation => animation.pause());
+      const current = animations;
+      Promise.allSettled(current.map(animation => animation.finished)).then(results => {
+        if (current !== animations || results.some(result => result.status === "rejected")) return;
+        complete = true;
+        root.dataset.motionState = "complete";
+      });
+    }
+
+    function play() {
+      if (constrained() || document.hidden || !visible || complete) return;
+      arm();
+      animations.forEach(animation => animation.play());
+      root.dataset.motionState = "playing";
+    }
+
+    function pause() {
+      animations.forEach(animation => animation.playState === "running" && animation.pause());
+      if (animations.length && !complete) root.dataset.motionState = "paused";
+    }
+
+    function reset() {
+      animations.forEach(animation => animation.cancel());
+      animations = [];
+      complete = false;
+    }
+
+    const observer = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        visible = entry.isIntersecting && entry.intersectionRatio >= .34;
+        if (!entry.isIntersecting) { leftAt = performance.now(); pause(); continue; }
+        if (complete && leftAt && performance.now() - leftAt >= 1100) reset();
+        leftAt = 0;
+        arm();
+        visible ? play() : pause();
+      }
+    }, {threshold:[0,.01,.34,.68],rootMargin:"-72px 0px 0px"});
+    observer.observe(root.querySelector(".known-piece") || root);
+    document.addEventListener("visibilitychange", () => document.hidden ? pause() : play());
+    reduce.addEventListener("change", () => {
+      if (constrained()) { reset(); root.dataset.motionState = "static"; }
+      else play();
+    });
+  }
+
   livingHero();
   systemJourney();
   finiteConnections();
+  resolvingRecord();
 })();
