@@ -257,3 +257,101 @@ body.v2-experience.home .story-band::before{display:none}
 .home .closing-invite-copy{max-width:440px;font-size:var(--body-size);line-height:1.75;color:var(--body-ink);margin-bottom:38px;text-wrap:pretty}
 .home .closing-invite .outline-button{color:var(--ink-strong);border-color:rgb(29 42 38 / 55%);min-width:250px}
 .home .closing-invite .outline-button:is(:hover,:focus-visible){border-color:#c4a465}
+
+/* ------------------------------------------------------------------
+   Rhythm: more air, and a little more at the two chapter turns
+   (after the film, and before the closing invitation).
+   ------------------------------------------------------------------ */
+.home{--section-gap:clamp(88px,12vw,184px)}
+.home #main>#known{margin-top:clamp(16px,2.4vw,40px)}
+.home #main>#introduction{margin-top:clamp(16px,2.8vw,48px)}
+@media(max-width:700px){.home{--section-gap:clamp(64px,17vw,92px)}}
+
+/* ------------------------------------------------------------------
+   Across every residence and yacht: three properties on one fine line.
+   A point of light travels along it with the scroll, and each property's
+   entry writes itself in as the light arrives. Without JS (or with reduced
+   motion) the line is complete and every entry is shown.
+   ------------------------------------------------------------------ */
+.home .places-band{display:grid;grid-template-columns:minmax(0,58fr) minmax(0,42fr);align-items:stretch;background:var(--canvas)}
+.places-map{position:relative;margin:0;display:flex;align-items:center;min-height:clamp(420px,36vw,560px);
+  padding:clamp(56px,6vw,96px) clamp(36px,4.5vw,80px);color:var(--white);isolation:isolate;overflow:hidden;
+  background:radial-gradient(ellipse 60% 70% at 50% 46%,rgb(214 232 222 / 9%),transparent 70%),
+    linear-gradient(rgb(19 48 38 / 80%),rgb(19 48 38 / 88%)),var(--jade-texture) center/cover,#133026}
+.places-route{--route:1;position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,32px);
+  width:100%;margin:0;padding:0;list-style:none}
+.place{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;min-width:0}
+.place-node{position:relative;z-index:2;width:11px;height:11px;border-radius:50%;margin-bottom:22px;
+  border:1px solid rgb(226 196 140 / 70%);background:#133026;transition:background .6s var(--ease-out),box-shadow .8s var(--ease-out)}
+.place.is-reached .place-node,.places-static .place-node{background:#e8c98c;box-shadow:0 0 0 3px rgb(232 201 140 / 14%),0 0 12px rgb(232 196 122 / 55%)}
+.place-name{font:400 clamp(19px,1.55vw,25px)/1.2 var(--serif);color:#f3f1ea;margin-bottom:14px}
+.place-log{display:flex;flex-direction:column;gap:5px;font:400 clamp(12px,.86vw,13.5px)/1.5 var(--sans);color:rgb(226 232 226 / 82%)}
+.place-item{color:#eef0ea}
+.place-mark{margin-top:8px;font:500 9.5px/1.4 var(--sans);letter-spacing:2.2px;text-transform:uppercase;color:rgb(196 226 210 / 75%)}
+/* the line runs between the first and last node centres */
+.places-line{position:absolute;z-index:0;left:calc(clamp(36px,4.5vw,80px) + (100% - 2 * clamp(36px,4.5vw,80px)) / 6);
+  right:calc(clamp(36px,4.5vw,80px) + (100% - 2 * clamp(36px,4.5vw,80px)) / 6);top:var(--line-y,50%);height:1px;
+  background:linear-gradient(90deg,rgb(226 196 140 / 22%),rgb(226 196 140 / 34%),rgb(226 196 140 / 22%))}
+.places-line::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgb(232 201 140 / 30%),rgb(232 201 140 / 85%));
+  transform-origin:left center;transform:scaleX(var(--route,1))}
+.places-light{position:absolute;top:50%;left:calc(var(--route,1) * 100%);width:7px;height:7px;border-radius:50%;
+  transform:translate(-50%,-50%);background:#fff3d6;box-shadow:0 0 6px 2px rgb(244 212 131 / 75%),0 0 18px 6px rgb(232 189 101 / 28%)}
+/* entries write themselves in */
+.places-live .place-log>span{opacity:0;transform:translateY(6px);transition:opacity .7s var(--ease-out),transform .9s var(--ease-out)}
+.places-live .place.is-reached .place-log>span{opacity:1;transform:none}
+.places-live .place.is-reached .place-log>span:nth-child(2){transition-delay:.18s}
+.places-live .place.is-reached .place-log>span:nth-child(3){transition-delay:.36s}
+.places-copy{align-self:center;padding:clamp(56px,6vw,96px) var(--gutter) clamp(56px,6vw,96px) clamp(40px,5vw,88px);min-width:0}
+.places-copy h2{font-size:var(--h2-size);line-height:1.08;color:var(--ink-strong);margin-bottom:24px}
+.places-copy h2 span{display:block}
+.places-copy>p:not(.section-label){font-size:var(--body-size);line-height:1.7;color:var(--body-ink);max-width:380px}
+@media(max-width:1099px){
+  .home .places-band{grid-template-columns:1fr}
+  .places-copy{grid-row:1;padding:clamp(48px,8vw,72px) var(--gutter) clamp(36px,6vw,52px)}
+}
+/* phones: the route runs down the page */
+@media(max-width:700px){
+  .places-map{min-height:0;padding:48px var(--gutter) 52px}
+  .places-route{grid-template-columns:1fr;gap:38px;padding-left:34px}
+  .place{align-items:flex-start;text-align:left}
+  .place-node{position:absolute;left:-34px;top:7px;margin:0}
+  .places-line{left:calc(var(--gutter) + 5px);right:auto;top:var(--line-top,60px);bottom:auto;width:1px;height:var(--line-h,70%);
+    background:linear-gradient(rgb(226 196 140 / 22%),rgb(226 196 140 / 34%))}
+  .places-line::before{transform-origin:center top;transform:scaleY(var(--route,1));background:linear-gradient(rgb(232 201 140 / 30%),rgb(232 201 140 / 85%))}
+  .places-light{left:50%;top:calc(var(--route,1) * 100%)}
+}
+
+/* ------------------------------------------------------------------
+   The film arrives: framed on the canvas, it opens to full width as it
+   comes into view. Linked to the scroll, never taking it over.
+   ------------------------------------------------------------------ */
+@media(min-width:801px){
+  .home .film-band{clip-path:inset(0 calc((1 - var(--arrive,1)) * 8vw))}
+  .home .film-frame{transform:scale(calc(.93 + .07 * var(--arrive,1)));transform-origin:center center}
+}
+
+/* ------------------------------------------------------------------
+   Signature light: the first time an evergreen panel enters view, one
+   hairline of warm light traces its top edge and fades. Once, never looping.
+   ------------------------------------------------------------------ */
+.edge-light{position:absolute;z-index:6;left:0;right:0;top:0;height:1px;pointer-events:none;opacity:0;
+  background:linear-gradient(90deg,transparent,rgb(240 210 150 / 90%) 50%,transparent);transform:scaleX(0);transform-origin:left center}
+.edge-light.is-lit{animation:edge-trace 2.6s var(--ease-out) forwards}
+@keyframes edge-trace{0%{opacity:0;transform:scaleX(0)}12%{opacity:1}62%{opacity:1;transform:scaleX(1)}100%{opacity:0;transform:scaleX(1)}}
+.home .known-piece,.home .owner-readiness .story-copy{position:relative}
+
+/* ------------------------------------------------------------------
+   Gentle arrivals: text rises a few pixels and fades in; photographs
+   settle from very slightly enlarged. Only once JS is ready, so nothing
+   is ever hidden without it.
+   ------------------------------------------------------------------ */
+.motion-ready .arrive{opacity:0;transform:translateY(12px);
+  transition:opacity .95s var(--ease-out) calc(var(--i,0) * 90ms),transform 1.15s var(--ease-out) calc(var(--i,0) * 90ms)}
+.motion-ready .arrive.is-in{opacity:1;transform:none}
+.motion-ready .settle{transform:scale(1.035);transition:transform 1.8s cubic-bezier(.16,1,.3,1)}
+.motion-ready .settle.is-in{transform:none}
+@media(prefers-reduced-motion:reduce){
+  .motion-ready .arrive,.motion-ready .settle{opacity:1;transform:none;transition:none}
+  .edge-light{display:none}
+  .home .film-band{clip-path:none}.home .film-frame{transform:none}
+}
