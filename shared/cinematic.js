@@ -268,74 +268,123 @@
   }
 
 
-  /* Home, Section 3: the record of one piece resolves note by note when seen,
-   * showing that its details are held together with it. Finite; paused when
-   * unseen; replays only after the section has been left and revisited. */
-  function resolvingRecord() {
-    const root = document.querySelector("[data-known-motion]");
-    if (!root || !("IntersectionObserver" in window) ||
-        typeof Element.prototype.animate !== "function") return;
-    const notes = [...root.querySelectorAll(".known-note")];
-    if (!notes.length) return;
-    let animations = [];
-    let complete = false;
+  /* Home, Section 3: the record of one piece, one facet at a time.
+   * One finite pass (Provenance → Service → Condition & care → Whereabouts)
+   * when the section is seen; it rests on Whereabouts. Paused when unseen or
+   * the tab is hidden, resumed where it was; the pass replays only after the
+   * visitor has moved away (over a second) and come back. A facet the visitor
+   * chooses takes over for the rest of the visit. Reduced motion / Save-Data:
+   * no auto-advance and instant switching. Without JS all four are shown. */
+  function facetRecord() {
+    const root = document.querySelector("[data-known-facets]");
+    if (!root) return;
+    const buttons = [...root.querySelectorAll(".known-facet")];
+    const statements = [...root.querySelectorAll(".known-statement")];
+    const live = root.querySelector(".known-statements");
+    if (!buttons.length || buttons.length !== statements.length || !live) return;
+
+    const DWELL = 4500;
+    const RETURN_AFTER = 1100;
+    let index = 0;
+    let remaining = DWELL;   // time left on the current facet
+    let since = 0;           // when the current dwell timer started
+    let timer = 0;
     let visible = false;
+    let complete = false;    // the pass has reached Whereabouts
+    let chosen = false;      // the visitor took over
     let leftAt = 0;
 
-    // Armed (paused at its first frame) as the section approaches, so the notes
-    // never show complete and then vanish when the resolve begins.
-    function arm() {
-      if (constrained() || animations.length || complete) return;
-      animations = notes.flatMap((note, index) => {
-        const delay = 260 + index * 520;
-        return [
-          note.animate([{"--note-line":"0"},{"--note-line":"1"}],
-            {duration:620, delay, fill:"both", easing:"cubic-bezier(.22,.61,.36,1)"}),
-          note.animate([{"--note-in":"0"},{"--note-in":"1"}],
-            {duration:720, delay:delay + 300, fill:"both", easing:"cubic-bezier(.22,.61,.36,1)"}),
-        ];
+    function show(next, {announce = false} = {}) {
+      index = next;
+      buttons.forEach((button, position) =>
+        button.setAttribute("aria-pressed", String(position === next)));
+      statements.forEach((statement, position) => {
+        const current = position === next;
+        statement.classList.toggle("is-current", current);
+        statement.setAttribute("aria-hidden", String(!current));
       });
-      animations.forEach(animation => animation.pause());
-      const current = animations;
-      Promise.allSettled(current.map(animation => animation.finished)).then(results => {
-        if (current !== animations || results.some(result => result.status === "rejected")) return;
-        complete = true;
-        root.dataset.motionState = "complete";
-      });
+      // Announce only what the visitor asked for; an automatic pass is silent.
+      live.setAttribute("aria-live", announce ? "polite" : "off");
     }
 
-    function play() {
-      if (constrained() || document.hidden || !visible || complete) return;
-      arm();
-      animations.forEach(animation => animation.play());
+    function stop() {
+      clearTimeout(timer);
+      timer = 0;
+    }
+
+    function schedule() {
+      stop();
+      since = performance.now();
+      timer = setTimeout(() => {
+        timer = 0;
+        remaining = DWELL;
+        show(index + 1);
+        if (index >= buttons.length - 1) {
+          complete = true;
+          root.dataset.motionState = "complete";
+          live.setAttribute("aria-live", "polite");
+        } else schedule();
+      }, remaining);
       root.dataset.motionState = "playing";
     }
 
-    function pause() {
-      animations.forEach(animation => animation.playState === "running" && animation.pause());
-      if (animations.length && !complete) root.dataset.motionState = "paused";
+    function play() {
+      if (chosen || complete || timer || !visible || document.hidden || constrained()) return;
+      schedule();
     }
 
-    function reset() {
-      animations.forEach(animation => animation.cancel());
-      animations = [];
-      complete = false;
+    function pause() {
+      if (!timer) return;
+      stop();
+      remaining = Math.max(0, remaining - (performance.now() - since));
+      root.dataset.motionState = "paused";
     }
+
+    function restart() {
+      stop();
+      complete = false;
+      remaining = DWELL;
+      show(0);
+    }
+
+    function choose(position) {
+      chosen = true;
+      stop();
+      root.dataset.motionState = "chosen";
+      if (position !== index) show(position, {announce:true});
+      else live.setAttribute("aria-live", "polite");
+    }
+
+    buttons.forEach((button, position) => {
+      button.addEventListener("click", () => choose(position));
+      button.addEventListener("focus", () => choose(position));
+      button.addEventListener("pointerenter", event => {
+        if (event.pointerType === "mouse") choose(position);
+      });
+    });
+
+    root.classList.add("facets-ready");
+    show(0);
+    if (constrained()) root.dataset.motionState = "static";
+    if (!("IntersectionObserver" in window)) return;
 
     const observer = new IntersectionObserver(entries => {
       for (const entry of entries) {
-        visible = entry.isIntersecting && entry.intersectionRatio >= .34;
-        if (!entry.isIntersecting) { leftAt = performance.now(); pause(); continue; }
-        if (complete && leftAt && performance.now() - leftAt >= 1100) reset();
+        visible = entry.isIntersecting && entry.intersectionRatio >= .4;
+        if (!visible) {
+          leftAt = entry.isIntersecting ? (leftAt || performance.now()) : performance.now();
+          pause();
+          continue;
+        }
+        if (complete && !chosen && leftAt && performance.now() - leftAt >= RETURN_AFTER) restart();
         leftAt = 0;
-        arm();
-        visible ? play() : pause();
+        play();
       }
-    }, {threshold:[0,.01,.34,.68],rootMargin:"-72px 0px 0px"});
-    observer.observe(root.querySelector(".known-piece") || root);
+    }, {threshold:[0,.4,.7],rootMargin:"-72px 0px 0px"});
+    observer.observe(root);
     document.addEventListener("visibilitychange", () => document.hidden ? pause() : play());
     reduce.addEventListener("change", () => {
-      if (constrained()) { reset(); root.dataset.motionState = "static"; }
+      if (constrained()) { pause(); root.dataset.motionState = "static"; }
       else play();
     });
   }
@@ -343,5 +392,5 @@
   livingHero();
   systemJourney();
   finiteConnections();
-  resolvingRecord();
+  facetRecord();
 })();

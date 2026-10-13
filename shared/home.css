@@ -88,76 +88,71 @@
   .readiness-caption p{font-size:12px;margin-top:10px}
 }
 
-@property --note-in{syntax:"<number>";inherits:true;initial-value:1}
-@property --note-line{syntax:"<number>";inherits:true;initial-value:1}
-/* Section 3 — Each piece, known in full. Warm limestone after the dark film:
-   one watch, four quiet notes joined to it by hairlines. No cards, no UI chrome. */
-.known-band{position:relative;display:grid;grid-template-columns:31% 69%;align-items:center;
-  padding:clamp(72px,8vw,128px) var(--gutter) clamp(72px,8vw,120px);
-  background:radial-gradient(ellipse 48% 62% at 66% 52%,#f5f1e9 0%,rgb(245 241 233 / 0%) 70%),linear-gradient(115deg,#ece6dc,#e4dbcf);color:var(--ink)}
-.known-copy{padding-right:6%;min-width:0}
-.known-copy h2{font-size:clamp(44px,3.9vw,64px);line-height:1.04;margin-bottom:26px}
-.known-copy>p:not(.section-label){font-size:15px;line-height:1.7;color:var(--muted);max-width:350px;text-wrap:pretty}
-.known-copy>p.known-scope{margin-top:24px;padding-top:20px;border-top:1px solid rgb(31 43 39 / 16%);color:var(--ink)}
-.known-piece{--note-gap:clamp(22px,2.4vw,40px);--leader:clamp(48px,4.6vw,76px);margin:0;min-width:0;display:grid;
-  grid-template-columns:minmax(0,1fr) clamp(260px,24vw,420px) minmax(0,1fr);grid-template-rows:1fr 1fr;column-gap:var(--note-gap)}
-.known-watch{grid-column:2;grid-row:1/3;width:100%;height:auto;position:relative;z-index:1;
-  filter:drop-shadow(0 30px 34px rgb(37 45 41 / 20%)) drop-shadow(0 6px 10px rgb(37 45 41 / 10%))}
-.known-notes{display:contents}
-.known-note{position:relative;z-index:2;max-width:250px;font-size:13.5px;line-height:1.65;color:var(--ink);text-wrap:pretty}
-.known-note-label{display:block;margin-bottom:9px;font:10px/1.5 var(--sans);letter-spacing:1.6px;text-transform:uppercase;color:var(--green)}
-/* The section's own padding gives the breath after the film; a separate
-   chapter band would show as a seam against the limestone gradient. */
+/* Section 3 — Each piece, known in full.
+   Two materials side by side: the idea on warm limestone, the piece held in a
+   deep evergreen vitrine with faint jade depth. The record shows one facet at a
+   time beneath it (cinematic.js facetRecord); without JS all four are listed. */
+.known-band{position:relative;display:grid;grid-template-columns:minmax(0,40fr) minmax(0,60fr);align-items:stretch;
+  padding:0 0 0 var(--gutter);background:linear-gradient(115deg,#ece6dc,#e4dbcf);color:var(--ink)}
 #main>.known-band:not(:first-child){border-block-start-width:0}
-/* Hairline from the label towards the watch, ending in a small point on it. */
-.known-note::before,.known-note::after{content:"";position:absolute;top:7px;pointer-events:none}
-.known-note::before{width:var(--leader);height:1px;background:rgb(68 93 84 / 42%)}
-.known-note::after{width:5px;height:5px;margin-top:-2px;border-radius:50%;background:var(--green)}
-.known-note--piece,.known-note--condition{grid-column:1;justify-self:end;text-align:right}
-.known-note--service,.known-note--place{grid-column:3;justify-self:start}
-.known-note--piece::before,.known-note--condition::before{left:calc(100% + 14px);transform-origin:left center}
-.known-note--piece::after,.known-note--condition::after{left:calc(100% + 14px + var(--leader))}
-.known-note--service::before,.known-note--place::before{right:calc(100% + 14px);transform-origin:right center}
-.known-note--service::after,.known-note--place::after{right:calc(100% + 14px + var(--leader))}
-.known-note--piece{grid-row:1;align-self:start;margin-top:14%}
-.known-note--service{grid-row:1;align-self:start;margin-top:30%}
-.known-note--condition{grid-row:2;align-self:end;margin-bottom:28%}
-.known-note--place{grid-row:2;align-self:end;margin-bottom:12%}
-/* The record resolves note by note when the section is seen (cinematic.js);
-   these custom properties carry that finite motion, and default to complete. */
-.known-note{opacity:var(--note-in,1);transform:translateY(calc((1 - var(--note-in,1)) * 6px))}
-.known-note::before{scale:var(--note-line,1) 1}
-.known-note::after{opacity:var(--note-line,1)}
+.known-head{align-self:center;padding:clamp(72px,8vw,120px) 9% clamp(72px,8vw,120px) 0;min-width:0}
+.known-head h2{font-size:clamp(44px,3.9vw,64px);line-height:1.04;margin-bottom:26px}
+.known-lede{font-size:15.5px;line-height:1.7;color:var(--ink);max-width:340px;text-wrap:pretty}
+.known-scope{margin-top:26px;padding-top:20px;border-top:1px solid rgb(31 43 39 / 14%);font-size:13.5px;line-height:1.7;color:var(--muted);max-width:340px;text-wrap:pretty}
+.known-piece{position:relative;margin:0;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:clamp(64px,6.5vw,104px) clamp(32px,5vw,80px) clamp(52px,5vw,80px);color:var(--white);isolation:isolate;overflow:hidden;
+  background:radial-gradient(ellipse 46% 40% at 50% 40%,rgb(214 232 222 / 13%),transparent 72%),
+    linear-gradient(rgb(13 32 27 / 78%),rgb(13 32 27 / 86%)),var(--jade-texture) center/cover,#0d201b}
+.known-piece::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;box-shadow:inset 0 1px rgb(255 255 255 / 6%)}
+.known-watch{width:clamp(220px,19vw,330px);height:auto;position:relative;z-index:1;
+  filter:drop-shadow(0 34px 38px rgb(0 0 0 / 42%)) drop-shadow(0 8px 12px rgb(0 0 0 / 24%))}
+.known-record{width:100%;max-width:560px;margin-top:clamp(30px,3.2vw,44px);text-align:center}
+.known-facets{display:none;justify-content:center;align-items:center;flex-wrap:wrap;margin:0;padding:0;list-style:none}
+.facets-ready .known-facets{display:flex}
+.known-facets li{display:flex;align-items:center}
+.known-facets li+li::before{content:"";width:3px;height:3px;border-radius:50%;background:rgb(196 226 210 / 40%);margin:0 clamp(10px,1.1vw,16px)}
+.known-facet{position:relative;min-height:44px;padding:0 2px;border:0;background:none;cursor:pointer;
+  font:500 10.5px/1 var(--sans);letter-spacing:2px;text-transform:uppercase;color:rgb(196 226 210 / 62%);transition:color .35s ease}
+.known-facet::after{content:"";position:absolute;left:2px;right:2px;bottom:11px;height:1px;background:rgb(196 226 210 / 80%);
+  transform:scaleX(0);transition:transform .5s cubic-bezier(.22,.61,.36,1)}
+.known-facet:hover,.known-facet[aria-pressed="true"]{color:#eef3ee}
+.known-facet[aria-pressed="true"]::after{transform:scaleX(1)}
+.known-facet:focus-visible{outline:1px solid rgb(196 226 210 / 80%);outline-offset:3px}
+/* No JS: every facet listed with its label. With JS: one at a time, same height. */
+.known-statements{display:grid;gap:18px;margin-top:8px}
+.known-statement{margin:0;font:400 clamp(21px,1.75vw,27px)/1.3 var(--serif);color:#f1f2ec;text-wrap:balance}
+.known-statement-label{display:block;margin-bottom:6px;font:500 10px/1.5 var(--sans);letter-spacing:2px;text-transform:uppercase;color:rgb(196 226 210 / 70%)}
+.facets-ready .known-statements{display:grid;grid-template-areas:"s";gap:0;margin-top:14px;min-height:2.7em}
+.facets-ready .known-statement{grid-area:s;opacity:0;transform:translateY(5px);visibility:hidden;
+  transition:opacity .6s ease,transform .7s cubic-bezier(.22,.61,.36,1),visibility 0s linear .6s}
+.facets-ready .known-statement.is-current{opacity:1;transform:none;visibility:visible;transition-delay:0s}
+.facets-ready .known-statement-label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media(prefers-reduced-motion:reduce){.facets-ready .known-statement{transition:none;transform:none}}
 
 /* Home-only footer status: honest, quiet, and part of the brand line. */
 .home .footer-status{order:0;flex:1 1 auto;text-align:center;color:#53605c;white-space:normal}
 .home .footer-brand>p:last-child{order:1}
 
 @media(min-width:1700px){
-  .known-copy>p:not(.section-label){font-size:16px;max-width:390px}
-  .known-note{font-size:14.5px;max-width:280px}
+  .known-lede,.known-scope{max-width:380px}
+  .known-lede{font-size:16.5px}
 }
-/* Tablet: the copy leads, the watch and its notes follow at full width. */
+/* Tablet and phone: the idea first, then the vitrine full width. */
 @media(max-width:1099px){
-  .known-band{grid-template-columns:1fr;row-gap:clamp(44px,6vw,64px);padding:clamp(56px,8vw,88px) var(--gutter)}
-  .known-copy{padding:0;max-width:560px}
-  .known-copy>p:not(.section-label){max-width:460px}
-  .known-piece{grid-template-columns:minmax(0,1fr) 300px minmax(0,1fr);--leader:44px;--note-gap:24px}
-  .known-note{font-size:13px;max-width:220px}
+  .known-band{grid-template-columns:1fr;padding:0}
+  .known-head{padding:clamp(56px,8vw,88px) var(--gutter) clamp(44px,6vw,60px)}
+  .known-lede,.known-scope{max-width:520px}
+  .known-watch{width:280px}
 }
-/* Phones: the watch alone, then its notes as a calm two-by-two record. */
 @media(max-width:700px){
-  .known-band{row-gap:36px;padding-block:52px 48px}
-  .known-copy h2{font-size:clamp(36px,10vw,46px);margin-bottom:20px}
-  .known-copy>p:not(.section-label){font-size:14px}
-  .known-piece{display:block}
-  .known-watch{width:min(56vw,280px);margin:0 auto 34px}
-  .known-notes{display:grid;grid-template-columns:1fr 1fr;gap:26px 22px}
-  .known-note{grid-column:auto;grid-row:auto;justify-self:stretch;align-self:start;max-width:none;margin:0;padding-top:14px;border-top:1px solid rgb(68 93 84 / 24%);text-align:left;font-size:13px}
-  .known-note::before,.known-note::after{display:none}
-  .known-note-label{margin-bottom:7px}
+  .known-head h2{font-size:clamp(36px,10vw,46px);margin-bottom:20px}
+  .known-lede{font-size:15px}
+  .known-piece{padding:52px var(--gutter) 44px}
+  .known-watch{width:min(58vw,250px)}
+  .facets-ready .known-facets{display:grid;grid-template-columns:repeat(2,auto);justify-content:center;column-gap:26px}
+  .known-facets li{justify-content:center}
+  .known-facets li+li::before{display:none}
+  .known-facet{font-size:9.5px;letter-spacing:1.4px}
+  .known-statement{font-size:20px}
   .home .footer-status{order:2;flex-basis:100%;text-align:left;padding-bottom:10px}
-}
-@media(max-width:360px){
-  .known-notes{grid-template-columns:1fr;gap:20px}
 }
