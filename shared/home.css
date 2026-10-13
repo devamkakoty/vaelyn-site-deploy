@@ -156,3 +156,50 @@
   .known-statement{font-size:20px}
   .home .footer-status{order:2;flex-basis:100%;text-align:left;padding-bottom:10px}
 }
+
+/* ------------------------------------------------------------------
+   Homepage system: one canvas, one dark, one type scale, real air.
+   Every section stands apart on a warm ivory canvas (the header's
+   limestone family), the way a gallery hangs work: dark evergreen
+   bands and photographs read as placed objects, copy sits on the page.
+   ------------------------------------------------------------------ */
+.home{
+  --canvas:#f0ece4;            /* page and light sections */
+  --deep:#0d201b;              /* evergreen: hero, film, vitrine, readiness */
+  --ink-strong:#1d2a26;        /* headings on canvas */
+  --body-ink:#3c4743;          /* body on canvas */
+  --jade-light:rgb(196 226 210);/* labels and fine detail on deep */
+  --section-gap:clamp(72px,9vw,152px);
+  --h2-size:clamp(40px,3.6vw,60px);
+  --body-size:clamp(15px,1.05vw,16.5px);
+  --surface-deep:var(--deep);--scrim-rgb:13 32 27;
+  background:var(--canvas)}
+.home #main{gap:var(--section-gap);padding-bottom:var(--section-gap);background:var(--canvas)}
+.home #main>:not(script):not(:first-child){border-block-start:0}
+.home .story-band{border-bottom:0}
+
+/* One heading voice, one body voice, one label voice */
+.home .story-copy h2,.home .known-head h2{font-size:var(--h2-size);line-height:1.05;letter-spacing:-.2px;color:var(--ink-strong);margin-bottom:24px}
+.home .owner-readiness .story-copy h2{color:var(--white)}
+.home .story-copy>p:not(.section-label),.home .known-lede{font-size:var(--body-size);line-height:1.7;color:var(--body-ink);max-width:380px}
+.home .owner-readiness .story-copy>p:not(.section-label){color:var(--inverse-muted)}
+.home .known-scope{font-size:calc(var(--body-size) - 1.5px);max-width:380px}
+.home .section-label{font:500 10.5px/1.5 var(--sans);letter-spacing:1.8px;text-transform:uppercase;color:var(--muted);margin-bottom:26px}
+.home .owner-readiness .section-label{color:var(--inverse-muted)}
+
+/* Light sections take the canvas, so copy sits on the page itself */
+.home .known-band,.home .owner-discovery,.home .owner-physical{background:var(--canvas)}
+.home .owner-readiness,.home .readiness-scene,.home .readiness-caption{background:var(--deep)}
+.home .site-footer{background:var(--canvas)}
+
+/* The film: a full-width evergreen band, held apart from the hero */
+.home .film-band{padding-block:clamp(28px,3vw,52px)}
+@media(max-width:480px){.home .film-band{padding-bottom:62px}}
+
+@media(max-width:700px){
+  .home{--section-gap:clamp(56px,15vw,80px);--h2-size:clamp(34px,9.6vw,44px);--body-size:15px}
+  .home .section-label{font-size:10px;margin-bottom:20px}
+}
+/* Sections now stand apart, so the old stacked-band seam shading goes. */
+body.v2-experience.home .story-band{box-shadow:none}
+body.v2-experience.home .story-band::before{display:none}
