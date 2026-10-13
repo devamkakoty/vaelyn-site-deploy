@@ -500,3 +500,22 @@ dialog .dialog-note a{text-decoration:underline;text-underline-offset:3px}
   }
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+
+/* The header meets the page in one crisp line: a solid limestone band and a
+   warm hairline, no shadow, no blur, no dissolve into the content below. */
+.site-header{box-shadow:none;border-bottom:1px solid #cbbd9f}
+@supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .site-header{background:var(--header-surface);backdrop-filter:none;-webkit-backdrop-filter:none}
+}
+body.v2-experience .site-header::after{display:none}
+
+/* Invitation buttons: on hover the hairline warms to champagne and catches a
+   faint light just outside its edge, like the installation's lit rim.
+   Thin, soft, quick to rise and slow to fade; never a fill, never a pulse. */
+:is(.site-header,.mobile-nav,.closing-invite,dialog) .outline-button{
+  transition:border-color .45s var(--ease-out),box-shadow .6s var(--ease-out),color .35s var(--ease-out)}
+:is(.site-header,.mobile-nav,.closing-invite,dialog) .outline-button:is(:hover,:focus-visible){
+  background:transparent;border-color:#c4a465;
+  box-shadow:0 0 0 .5px rgb(214 182 118 / 55%),0 0 9px rgb(232 196 122 / 30%),0 0 22px rgb(232 196 122 / 12%),inset 0 0 6px rgb(232 196 122 / 12%);
+  transition-duration:.32s,.32s,.32s}
+@media(prefers-reduced-motion:reduce){:is(.site-header,.mobile-nav,.closing-invite,dialog) .outline-button{transition:none}}

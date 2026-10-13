@@ -246,3 +246,14 @@ body.v2-experience.home .story-band::before{display:none}
 .home .film-frame,.home .film-video{background:#163529}
 /* The readiness copy panel fills its section, so no inner box shows. */
 .home .owner-readiness .story-copy{align-self:stretch;display:flex;flex-direction:column;justify-content:center}
+
+/* Closing invitation: one quiet, centred moment on the canvas before the footer. */
+.home .closing-invite{display:flex;flex-direction:column;align-items:center;text-align:center;
+  padding:clamp(24px,3vw,48px) var(--gutter) clamp(8px,1vw,16px);background:var(--canvas)}
+.home .closing-invite .section-label{justify-content:center;gap:14px}
+.home .closing-invite .section-label::before{content:"";display:block;height:1px;width:54px;background:currentColor;opacity:.5}
+.home .closing-invite h2{font-size:var(--h2-size);line-height:1.12;color:var(--ink-strong);margin-bottom:26px}
+.home .closing-invite h2 span{display:block}
+.home .closing-invite-copy{max-width:440px;font-size:var(--body-size);line-height:1.75;color:var(--body-ink);margin-bottom:38px;text-wrap:pretty}
+.home .closing-invite .outline-button{color:var(--ink-strong);border-color:rgb(29 42 38 / 55%);min-width:250px}
+.home .closing-invite .outline-button:is(:hover,:focus-visible){border-color:#c4a465}
