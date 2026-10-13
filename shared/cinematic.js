@@ -283,7 +283,7 @@
     const live = root.querySelector(".known-statements");
     if (!buttons.length || buttons.length !== statements.length || !live) return;
 
-    const DWELL = 4500;
+    const DWELL = 6000;   // unhurried: time to read each line
     const RETURN_AFTER = 1100;
     let index = 0;
     let remaining = DWELL;   // time left on the current facet

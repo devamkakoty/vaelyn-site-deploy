@@ -19,6 +19,11 @@
   const reduce = matchMedia("(prefers-reduced-motion: reduce)");
   const constrained = () => reduce.matches || Boolean(navigator.connection?.saveData);
   const RETURN_AFTER = 1100;
+  // The film's last second fades its closing line to plain evergreen. On the
+  // page it rests on the line instead: stop just before the fade, easing any
+  // sound out over the final moment.
+  const HOLD_AT = 26.9;
+  const SOUND_EASE = 0.9;
 
   let visible = false;
   let started = false;     // the film has begun at least once this cycle
@@ -66,9 +71,33 @@
     sound.title = sound.getAttribute("aria-label");
   }
 
+  function holdOnClosingLine() {
+    if (finished) return;
+    video.pause();
+    try { video.currentTime = HOLD_AT; } catch { /* already there */ }
+    finished = true;
+    render();
+  }
+
+  function watchForClosingLine() {
+    const check = t => {
+      if (!video.muted) video.volume = Math.max(0, Math.min(1, (HOLD_AT - t) / SOUND_EASE));
+      if (t >= HOLD_AT) { holdOnClosingLine(); return true; }
+      return false;
+    };
+    if ("requestVideoFrameCallback" in video) {
+      const step = (now, meta) => { if (!check(meta.mediaTime) && !video.paused) video.requestVideoFrameCallback(step); };
+      video.requestVideoFrameCallback(step);
+    }
+  }
+  video.addEventListener("timeupdate", () => {
+    if (!finished && video.currentTime >= HOLD_AT) holdOnClosingLine();
+  });
+
   function restart() {
     finished = false;
     started = false;
+    video.volume = 1;
     try { video.currentTime = 0; } catch { /* metadata not loaded yet */ }
   }
 
@@ -96,7 +125,7 @@
     if (!video.paused) video.pause();
   }
 
-  video.addEventListener("play", render);
+  video.addEventListener("play", () => { render(); watchForClosingLine(); });
   video.addEventListener("pause", render);
   video.addEventListener("ended", () => {
     finished = true;
