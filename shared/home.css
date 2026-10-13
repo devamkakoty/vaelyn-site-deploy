@@ -204,32 +204,34 @@
 body.v2-experience.home .story-band{box-shadow:none}
 body.v2-experience.home .story-band::before{display:none}
 
-/* Hero: the room leads, the words sit quietly in front of it.
-   Lighter, shorter shading so the photograph carries the frame; a narrower
-   column with real leading so headline and copy breathe. */
+/* Hero (option A): the words on evergreen, the room beside them.
+   Nothing overlaps, so the copy reads cleanly and the photograph leads.
+   The room keeps its 4:3 box (the mirror's lights are placed inside it) and
+   is cropped to the right panel, favouring the window and the mirror. */
 @media(min-width:801px){
-  .hero::after{background:linear-gradient(90deg,rgb(var(--scrim-rgb)/92%) 0%,rgb(var(--scrim-rgb)/86%) 22%,rgb(var(--scrim-rgb)/62%) 32%,rgb(var(--scrim-rgb)/22%) 42%,transparent 52%)}
-  .hero::before{opacity:.34;mask-image:linear-gradient(90deg,#000 0%,#000 14%,#0008 26%,transparent 42%)}
-  .hero h1{line-height:1.2;max-width:none;white-space:nowrap;top:-44px}
-  .hero-description{max-width:min(390px,28vw);min-width:340px;margin-top:8px}
-  .hero-description .lead{font-size:16.5px;line-height:1.8}
-  .hero-description p{line-height:1.85}
+  .hero{--hero-split:40%;--hero-focus:.72}
+  .hero::after{display:none}
+  .hero::before{right:auto;width:var(--hero-split);mask-image:none;opacity:.45}
+  .hero-art{left:var(--hero-split);mask-image:linear-gradient(90deg,transparent,#000 72px)}
+  .hero-architecture{width:max(100cqw,133.333333cqh);aspect-ratio:4/3;top:50%;right:auto;
+    left:calc((100cqw - max(100cqw,133.333333cqh)) * var(--hero-focus));transform:translateY(-50%);mask-image:none}
+  .hero-copy{max-width:var(--hero-split);padding-right:clamp(32px,3.5vw,64px)}
+  .hero h1{font-size:clamp(40px,3.2vw,62px);line-height:1.2;max-width:none;white-space:nowrap;top:-36px}
+  .hero-description{max-width:400px;margin-top:4px}
+  .hero-description .lead{font-size:clamp(15.5px,1.12vw,18px);line-height:1.8}
+  .hero-description p{font-size:clamp(14.5px,1.02vw,16.5px);line-height:1.85}
   .hero-description p+p{margin-top:22px}
-  .hero-photo{filter:brightness(1.06) saturate(1.03)}
 }
-@media(min-width:1700px){.hero-description{max-width:440px}.hero-description .lead{font-size:18px}}
-@media(max-width:800px){
-  .hero h1{line-height:1.18}
-  .hero-description{margin-top:30px}
-  .hero-description p{line-height:1.8}
-  .hero-description p+p{margin-top:20px}
-}
+@media(min-width:1700px){.hero-description{max-width:460px}}
 @media(min-width:801px) and (max-width:1100px){
-  .hero::after{background:linear-gradient(90deg,rgb(var(--scrim-rgb)/93%) 0%,rgb(var(--scrim-rgb)/86%) 34%,rgb(var(--scrim-rgb)/52%) 47%,transparent 62%)}
-  .hero-description{min-width:0;max-width:360px}
+  .hero{--hero-split:46%;--hero-focus:.97}
+  .hero h1{font-size:clamp(34px,3.6vw,40px);white-space:normal}
+  .hero-description{max-width:none}
 }
 @media(max-width:800px){
-  .hero h1{top:0}
+  .hero h1{line-height:1.18;top:0}
   .hero-copy{padding-top:48px;padding-bottom:44px}
   .hero-description{margin-top:28px}
+  .hero-description p{line-height:1.8}
+  .hero-description p+p{margin-top:20px}
 }
