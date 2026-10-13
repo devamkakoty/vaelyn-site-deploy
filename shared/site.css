@@ -6,13 +6,13 @@
    Dark openings establish the setting; light reading areas give the photographs air. */
 :root{
  --ink:#252d2c;--paper:#f0f0ec;--white:#f4f3ed;--muted:#59635f;--green:#445d54;
- --surface-deep:#182321;--surface-mid:#202f2b;--surface-soft:#e4e6e1;--surface-raised:#f7f7f2;
+ --surface-deep:#133026;--surface-mid:#202f2b;--surface-soft:#e4e6e1;--surface-raised:#f7f7f2;
  --surface-stone:#ddd5c8;--surface-linen:#e9e3d9;--line-warm:#b9afa0;
  --inverse-muted:#c9d1cb;--line:#c8ceca;--line-inverse:#ffffff29;
  --accent:#826f4b;--accent-inverse:#c5b38e;--accent-line:#c5b38e66;
  --focus-light:#526f63;--focus-dark:#d4c39c;--focus-ring:var(--focus-light);
  --button-hover:#445d540d;--panel-dark:#202f2bf7;--panel-light:#f0f0ecf7;
- --scrim-rgb:24 35 33;--image-shadow:0 1px 12px #0009;
+ --scrim-rgb:19 48 38;--image-shadow:0 1px 12px #0009;
  --ease-out:cubic-bezier(.22,.61,.36,1);--interaction-duration:180ms;
  --serif:Boska,Georgia,serif;--sans:"General Sans",Arial,Helvetica,sans-serif;--gutter:6%;
  --chapter-breath:clamp(12px,1.666667vw,28px);--header-height:80px;

@@ -16,21 +16,21 @@
 
 .owner-readiness .story-copy{
   background:
-    linear-gradient(rgb(13 32 27 / 64%),rgb(13 32 27 / 64%)),
+    linear-gradient(rgb(19 48 38 / 64%),rgb(19 48 38 / 64%)),
     var(--jade-texture) center/cover;
 }
 
 .system-page .system-intro{
   background:
     radial-gradient(ellipse at 60% 64%,rgb(61 91 73 / 24%),transparent 62%),
-    linear-gradient(rgb(13 32 27 / 35%),rgb(13 32 27 / 35%)),
+    linear-gradient(rgb(19 48 38 / 35%),rgb(19 48 38 / 35%)),
     var(--jade-texture) center/cover;
 }
 
 .privacy-copy{
   color:var(--white);
   background:
-    linear-gradient(rgb(13 32 27 / 58%),rgb(13 32 27 / 58%)),
+    linear-gradient(rgb(19 48 38 / 58%),rgb(19 48 38 / 58%)),
     var(--jade-texture) 60% center/auto 110%;
 }
 .privacy-copy h2,
@@ -43,12 +43,12 @@
   .hero::before{display:none}
   .hero-copy{
     background:
-      linear-gradient(rgb(13 32 27 / 38%),rgb(13 32 27 / 38%)),
+      linear-gradient(rgb(19 48 38 / 38%),rgb(19 48 38 / 38%)),
       var(--jade-texture) center/cover;
   }
   .system-intro .intro-copy{
     background:
-      linear-gradient(rgb(13 32 27 / 32%),rgb(13 32 27 / 32%)),
+      linear-gradient(rgb(19 48 38 / 32%),rgb(19 48 38 / 32%)),
       var(--jade-texture) center/cover;
   }
 }

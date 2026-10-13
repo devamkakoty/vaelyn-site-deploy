@@ -1,7 +1,7 @@
 /* Shared Home-only composition. System, Operations and About do not load this. */
 /* The founder's full opening, not a condensed substitute. Three paragraphs give
    identity, physical continuity and the owner's outcome their own reading beat. */
-.hero{min-height:max(800px,min(94svh,1000px));height:auto;--surface-deep:#0d201b;--scrim-rgb:13 32 27}
+.hero{min-height:max(800px,min(94svh,1000px));height:auto;--surface-deep:#133026;--scrim-rgb:19 48 38}
 .hero-copy{height:auto;min-height:inherit;padding-block:calc(var(--header-height) + 56px) 58px}
 .hero::after{background:linear-gradient(90deg,rgb(var(--scrim-rgb)/96%) 0%,rgb(var(--scrim-rgb)/92%) 28%,rgb(var(--scrim-rgb)/74%) 43%,transparent 64%)}
 .hero h1{font-size:clamp(50px,4.2vw,72px);line-height:1.09;max-width:650px;letter-spacing:0;text-wrap:initial}
@@ -102,7 +102,7 @@
 .known-piece{position:relative;margin:0;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
   padding:clamp(64px,6.5vw,104px) clamp(32px,5vw,80px) clamp(52px,5vw,80px);color:var(--white);isolation:isolate;overflow:hidden;
   background:radial-gradient(ellipse 46% 40% at 50% 40%,rgb(214 232 222 / 13%),transparent 72%),
-    linear-gradient(rgb(13 32 27 / 78%),rgb(13 32 27 / 86%)),var(--jade-texture) center/cover,#0d201b}
+    linear-gradient(rgb(19 48 38 / 78%),rgb(19 48 38 / 86%)),var(--jade-texture) center/cover,#133026}
 .known-piece::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;box-shadow:inset 0 1px rgb(255 255 255 / 6%)}
 .known-watch{width:clamp(220px,19vw,330px);height:auto;position:relative;z-index:1;
   filter:drop-shadow(0 34px 38px rgb(0 0 0 / 42%)) drop-shadow(0 8px 12px rgb(0 0 0 / 24%))}
@@ -165,14 +165,14 @@
    ------------------------------------------------------------------ */
 .home{
   --canvas:#f0ece4;            /* page and light sections */
-  --deep:#0d201b;              /* evergreen: hero, film, vitrine, readiness */
+  --deep:#133026;              /* evergreen: hero, film, vitrine, readiness */
   --ink-strong:#1d2a26;        /* headings on canvas */
   --body-ink:#3c4743;          /* body on canvas */
   --jade-light:rgb(196 226 210);/* labels and fine detail on deep */
   --section-gap:clamp(72px,9vw,152px);
   --h2-size:clamp(40px,3.6vw,60px);
   --body-size:clamp(15px,1.05vw,16.5px);
-  --surface-deep:var(--deep);--scrim-rgb:13 32 27;
+  --surface-deep:var(--deep);--scrim-rgb:19 48 38;
   background:var(--canvas)}
 .home #main{gap:var(--section-gap);padding-bottom:var(--section-gap);background:var(--canvas)}
 .home #main>:not(script):not(:first-child){border-block-start:0}
@@ -241,3 +241,8 @@ body.v2-experience.home .story-band::before{display:none}
 .home .hero h1 .hero-line{display:block}
 .home .hero h1 .hero-line+.hero-line{margin-top:.34em}
 .home .hero h1{line-height:1.08}
+/* Match the film band to the film's own evergreen so the frame has no edge. */
+.home .film-band{background:linear-gradient(rgb(22 53 41 / 84%),rgb(22 53 41 / 84%)),var(--jade-texture) center/cover,#163529}
+.home .film-frame,.home .film-video{background:#163529}
+/* The readiness copy panel fills its section, so no inner box shows. */
+.home .owner-readiness .story-copy{align-self:stretch;display:flex;flex-direction:column;justify-content:center}

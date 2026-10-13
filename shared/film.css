@@ -3,12 +3,12 @@
    same jade-textured surface: letterboxing reads as material, not as an empty bar.
    The whole frame is always shown (never cropped), at its native 1920 / 824. */
 .film-band{--chapter-surface:var(--surface-deep);--focus-ring:var(--focus-dark);position:relative;
-  background:linear-gradient(rgb(13 32 27 / 72%),rgb(13 32 27 / 72%)),var(--jade-texture) center/cover,#0d201b;
+  background:linear-gradient(rgb(19 48 38 / 72%),rgb(19 48 38 / 72%)),var(--jade-texture) center/cover,#133026;
   color:var(--white)}
-.film-frame{position:relative;width:100%;margin-inline:auto;aspect-ratio:1920/824;background:#0d201b;
+.film-frame{position:relative;width:100%;margin-inline:auto;aspect-ratio:1920/824;background:#133026;
   /* On very wide or short screens keep the whole frame below the header. */
   max-width:calc((100svh - var(--header-height)) * 1920 / 824)}
-.film-video{display:block;width:100%;height:100%;object-fit:contain;background:#0d201b}
+.film-video{display:block;width:100%;height:100%;object-fit:contain;background:#133026}
 .film-description{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;
   clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
 
