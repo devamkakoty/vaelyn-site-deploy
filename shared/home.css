@@ -237,3 +237,7 @@ body.v2-experience.home .story-band::before{display:none}
 }
 /* A gentle lift on the room itself: shadows opened, sunset kept. */
 .home .hero-photo{filter:brightness(1.12) contrast(.96) saturate(1.04)}
+/* Headline: two distinct lines with clear air between them. */
+.home .hero h1 .hero-line{display:block}
+.home .hero h1 .hero-line+.hero-line{margin-top:.34em}
+.home .hero h1{line-height:1.08}
