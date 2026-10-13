@@ -235,3 +235,5 @@ body.v2-experience.home .story-band::before{display:none}
   .hero-description p{line-height:1.8}
   .hero-description p+p{margin-top:20px}
 }
+/* A gentle lift on the room itself: shadows opened, sunset kept. */
+.home .hero-photo{filter:brightness(1.12) contrast(.96) saturate(1.04)}
