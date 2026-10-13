@@ -530,3 +530,5 @@ body.v2-experience .site-header::after{display:none}
 .desktop-nav>a:is(:hover,:focus-visible)::after{transform:scaleX(1);transform-origin:left center}
 .desktop-nav>a[aria-current=page]::after{transform:scaleX(1)}
 @media(prefers-reduced-motion:reduce){.desktop-nav>a::after{transition:none}}
+/* Invitation buttons carry words only, centred. */
+:is(.site-header,.mobile-nav,.closing-invite) .outline-button[data-dialog]{justify-content:center}
