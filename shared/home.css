@@ -203,3 +203,33 @@
 /* Sections now stand apart, so the old stacked-band seam shading goes. */
 body.v2-experience.home .story-band{box-shadow:none}
 body.v2-experience.home .story-band::before{display:none}
+
+/* Hero: the room leads, the words sit quietly in front of it.
+   Lighter, shorter shading so the photograph carries the frame; a narrower
+   column with real leading so headline and copy breathe. */
+@media(min-width:801px){
+  .hero::after{background:linear-gradient(90deg,rgb(var(--scrim-rgb)/92%) 0%,rgb(var(--scrim-rgb)/86%) 22%,rgb(var(--scrim-rgb)/62%) 32%,rgb(var(--scrim-rgb)/22%) 42%,transparent 52%)}
+  .hero::before{opacity:.34;mask-image:linear-gradient(90deg,#000 0%,#000 14%,#0008 26%,transparent 42%)}
+  .hero h1{line-height:1.2;max-width:none;white-space:nowrap;top:-44px}
+  .hero-description{max-width:min(390px,28vw);min-width:340px;margin-top:8px}
+  .hero-description .lead{font-size:16.5px;line-height:1.8}
+  .hero-description p{line-height:1.85}
+  .hero-description p+p{margin-top:22px}
+  .hero-photo{filter:brightness(1.06) saturate(1.03)}
+}
+@media(min-width:1700px){.hero-description{max-width:440px}.hero-description .lead{font-size:18px}}
+@media(max-width:800px){
+  .hero h1{line-height:1.18}
+  .hero-description{margin-top:30px}
+  .hero-description p{line-height:1.8}
+  .hero-description p+p{margin-top:20px}
+}
+@media(min-width:801px) and (max-width:1100px){
+  .hero::after{background:linear-gradient(90deg,rgb(var(--scrim-rgb)/93%) 0%,rgb(var(--scrim-rgb)/86%) 34%,rgb(var(--scrim-rgb)/52%) 47%,transparent 62%)}
+  .hero-description{min-width:0;max-width:360px}
+}
+@media(max-width:800px){
+  .hero h1{top:0}
+  .hero-copy{padding-top:48px;padding-bottom:44px}
+  .hero-description{margin-top:28px}
+}
