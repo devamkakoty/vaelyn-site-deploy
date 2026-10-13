@@ -516,6 +516,17 @@ body.v2-experience .site-header::after{display:none}
   transition:border-color .45s var(--ease-out),box-shadow .6s var(--ease-out),color .35s var(--ease-out)}
 :is(.site-header,.mobile-nav,.closing-invite,dialog) .outline-button:is(:hover,:focus-visible){
   background:transparent;border-color:#c4a465;
-  box-shadow:0 0 0 .5px rgb(214 182 118 / 55%),0 0 9px rgb(232 196 122 / 30%),0 0 22px rgb(232 196 122 / 12%),inset 0 0 6px rgb(232 196 122 / 12%);
+  box-shadow:0 0 0 .5px rgb(214 182 118 / 55%),0 0 4px rgb(232 196 122 / 34%),inset 0 0 3px rgb(232 196 122 / 12%);
   transition-duration:.32s,.32s,.32s}
 @media(prefers-reduced-motion:reduce){:is(.site-header,.mobile-nav,.closing-invite,dialog) .outline-button{transition:none}}
+
+/* Navigation links: a fine hairline that draws in from the left on hover and
+   leaves to the right. The current page keeps its line. No glow: the light is
+   reserved for the invitation. */
+.desktop-nav>a{position:relative;text-decoration:none}
+.desktop-nav>a:hover,.desktop-nav>a[aria-current=page]{text-decoration:none}
+.desktop-nav>a::after{content:"";position:absolute;left:0;right:0;bottom:3px;height:1px;background:currentColor;opacity:.75;
+  transform:scaleX(0);transform-origin:right center;transition:transform .55s var(--ease-out)}
+.desktop-nav>a:is(:hover,:focus-visible)::after{transform:scaleX(1);transform-origin:left center}
+.desktop-nav>a[aria-current=page]::after{transform:scaleX(1)}
+@media(prefers-reduced-motion:reduce){.desktop-nav>a::after{transition:none}}
