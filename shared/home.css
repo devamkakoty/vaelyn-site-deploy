@@ -362,3 +362,24 @@ body.v2-experience.home .story-band::before{display:none}
 .home .section-label{color:var(--label-green)}
 .home .owner-readiness .section-label{color:var(--inverse-muted)}
 .home .closing-invite .outline-button{color:#173a2e;border-color:rgb(23 58 46 / 62%)}
+
+/* Chapter numbers: a quiet index before each label, in aligned figures. */
+.home .label-index{font-variant-numeric:tabular-nums;letter-spacing:1px;margin-right:12px;padding-right:12px;border-right:1px solid currentColor;opacity:.75}
+.home .owner-readiness .story-copy .section-label{color:rgb(214 228 220 / 78%)}
+/* System entries keep time in aligned figures, like a refined log. */
+.place-mark time{font-variant-numeric:tabular-nums;letter-spacing:1.2px;margin-left:6px;color:rgb(232 210 160 / 85%)}
+.home .closing-assurance{margin-top:30px;font-size:12.5px;letter-spacing:.2px;color:var(--label-green)}
+/* One photographic world: the curation and departure photographs share the
+   hero's warm evening grade. */
+.home .discovery-scene>img,.home .readiness-photo{filter:sepia(.1) saturate(1.06) brightness(1.02) contrast(1.02)}
+/* Five facets: one line on wide screens, a centred 3 + 2 on phones. */
+.home .known-record{max-width:720px}
+@media(min-width:1100px){
+  .home .facets-ready .known-facets{flex-wrap:nowrap}
+  .home .known-facets li+li::before{margin:0 clamp(8px,.9vw,14px)}
+  .home .known-facet{letter-spacing:1.7px;font-size:10px}
+}
+@media(max-width:700px){
+  .home .facets-ready .known-facets{display:flex;flex-wrap:wrap;justify-content:center;column-gap:24px;row-gap:0}
+}
+@media(max-width:700px){.home .closing-invite .section-label::before,.home .closing-invite .section-label::after{display:none}.home .closing-invite .section-label{white-space:nowrap}}
