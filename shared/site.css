@@ -532,3 +532,11 @@ body.v2-experience .site-header::after{display:none}
 @media(prefers-reduced-motion:reduce){.desktop-nav>a::after{transition:none}}
 /* Invitation buttons carry words only, centred. */
 :is(.site-header,.mobile-nav,.closing-invite) .outline-button[data-dialog]{justify-content:center}
+
+/* Secondary text links ("Explore the system"): a quiet "this way". On hover
+   the arrow eases forward and the fine line beneath deepens. No box, no glow. */
+.text-link{border-bottom-color:rgb(89 99 95 / 55%);transition:border-color .45s var(--ease-out),color .45s var(--ease-out)}
+.text-link svg{transition:transform .5s var(--ease-out)}
+.text-link:is(:hover,:focus-visible){color:inherit;border-bottom-color:currentColor}
+.text-link:is(:hover,:focus-visible) svg{transform:translateX(4px)}
+@media(prefers-reduced-motion:reduce){.text-link,.text-link svg{transition:none}}
