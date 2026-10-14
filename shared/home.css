@@ -355,3 +355,10 @@ body.v2-experience.home .story-band::before{display:none}
   .edge-light{display:none}
   .home .film-band{clip-path:none}.home .film-frame{transform:none}
 }
+
+/* House colour in the type: headings, invitations and secondary links in the
+   deep evergreen; body stays charcoal; labels take a muted evergreen. */
+.home{--ink-strong:#173a2e;--label-green:#4d675e}
+.home .section-label{color:var(--label-green)}
+.home .owner-readiness .section-label{color:var(--inverse-muted)}
+.home .closing-invite .outline-button{color:#173a2e;border-color:rgb(23 58 46 / 62%)}

@@ -540,3 +540,8 @@ body.v2-experience .site-header::after{display:none}
 .text-link:is(:hover,:focus-visible){color:inherit;border-bottom-color:currentColor}
 .text-link:is(:hover,:focus-visible) svg{transform:translateX(4px)}
 @media(prefers-reduced-motion:reduce){.text-link,.text-link svg{transition:none}}
+
+/* Invitation button and secondary links carry the house evergreen. */
+.site-header .outline-button,.mobile-nav .outline-button{color:#173a2e;border-color:#173a2e}
+.text-link{color:#173a2e;border-bottom-color:rgb(23 58 46 / 42%)}
+.text-link:is(:hover,:focus-visible){color:#173a2e;border-bottom-color:#173a2e}
