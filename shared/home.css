@@ -383,3 +383,46 @@ body.v2-experience.home .story-band::before{display:none}
   .home .facets-ready .known-facets{display:flex;flex-wrap:wrap;justify-content:center;column-gap:24px;row-gap:0}
 }
 @media(max-width:700px){.home .closing-invite .section-label::before,.home .closing-invite .section-label::after{display:none}.home .closing-invite .section-label{white-space:nowrap}}
+
+/* ------------------------------------------------------------------
+   03 The intelligence: a full-width cinematic moment. A short intro row
+   on the canvas, then the evening itself across the whole width, with
+   the system's proposal set quietly over it in the film's typography.
+   ------------------------------------------------------------------ */
+.home .intel-band{background:var(--canvas)}
+.intel-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,120px);align-items:end;
+  padding:0 var(--gutter) clamp(36px,4vw,64px)}
+.intel-head h2{font-size:var(--h2-size);line-height:1.08;color:var(--ink-strong)}
+.intel-head h2 span{display:block}
+.intel-head .section-label{margin-bottom:24px}
+.intel-copy p{font-size:var(--body-size);line-height:1.75;color:var(--body-ink);max-width:470px}
+.intel-copy .intel-examples{margin-top:14px;color:var(--ink-strong);font-family:var(--serif);font-size:calc(var(--body-size) + 3px);line-height:1.5}
+.intel-scene{position:relative;margin:0;overflow:hidden;aspect-ratio:2/1;max-height:calc(100svh - var(--header-height));width:100%;background:#2a1d14}
+.intel-video{display:block;width:100%;height:100%;object-fit:cover;object-position:center top}
+.intel-scene::after{content:"";position:absolute;inset:auto 0 0 0;height:46%;pointer-events:none;
+  background:linear-gradient(transparent,rgb(16 12 8 / 62%))}
+.intel-note{position:absolute;z-index:1;right:var(--gutter);bottom:clamp(28px,4vw,56px);display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:6px;
+  color:#f4f1ea;text-shadow:0 1px 14px rgb(0 0 0 / 45%)}
+.intel-note-place{font:400 clamp(20px,1.7vw,28px)/1.2 var(--serif);margin-bottom:6px}
+.intel-note-item{font:400 clamp(13.5px,1vw,16px)/1.5 var(--sans)}
+.intel-note-state{font:400 clamp(13.5px,1vw,16px)/1.5 var(--sans);color:rgb(244 241 234 / 84%)}
+.intel-note-mark{margin-top:10px;font:500 10px/1.4 var(--sans);letter-spacing:2.6px;text-transform:uppercase;color:rgb(196 226 210 / 88%)}
+.motion-ready .intel-note>span{opacity:0;transform:translateY(6px);transition:opacity .9s var(--ease-out),transform 1.1s var(--ease-out)}
+.motion-ready .intel-note.is-in>span{opacity:1;transform:none}
+.motion-ready .intel-note.is-in>span:nth-child(2){transition-delay:.35s}
+.motion-ready .intel-note.is-in>span:nth-child(3){transition-delay:.7s}
+.motion-ready .intel-note.is-in>span:nth-child(4){transition-delay:1.05s}
+@media(max-width:900px){
+  .intel-head{grid-template-columns:1fr;gap:20px;align-items:start}
+}
+/* Phones: a tall frame around her, the proposal beneath rather than over her. */
+@media(max-width:700px){
+  .intel-scene{aspect-ratio:auto;max-height:none;overflow:visible;background:var(--canvas)}
+  .intel-scene::after{display:none}
+  .intel-note{position:static;align-items:flex-start;text-align:left;color:var(--ink-strong);text-shadow:none;padding:22px var(--gutter) 0;background:var(--canvas)}
+  .intel-note-state{color:var(--body-ink)}
+  .intel-note-mark{color:var(--label-green)}
+  .intel-band figure{background:var(--canvas)}
+  .intel-video{aspect-ratio:4/5;height:auto}
+}
+@media(prefers-reduced-motion:reduce){.motion-ready .intel-note>span{opacity:1;transform:none;transition:none}}

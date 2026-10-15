@@ -36,6 +36,26 @@
     }
   }
 
+
+  // 03 The intelligence: the evening loop. Wide or tall source by layout;
+  // plays only while in view; under reduced motion the poster stays.
+  const intel = document.querySelector("[data-intel] video");
+  if (intel) {
+    const tall = matchMedia("(max-width: 700px)");
+    const pick = () => {
+      const base = tall.matches ? intel.dataset.tall : intel.dataset.wide;
+      intel.poster = base + "-poster.webp";
+      if (reduce) return;
+      const src = intel.canPlayType('video/webm; codecs="vp9"') ? base + ".webm" : base + ".mp4";
+      if (!intel.src.endsWith(src)) { intel.src = src; intel.load(); }
+    };
+    pick(); tall.addEventListener("change", pick);
+    if (!reduce && "IntersectionObserver" in window) {
+      new IntersectionObserver(es => es.forEach(e => {
+        if (e.isIntersecting) { intel.preload = "auto"; intel.play().catch(() => {}); } else intel.pause();
+      }), {threshold: 0.35}).observe(intel);
+    }
+  }
   if (reduce) {
     places?.classList.add("places-static");
     measureRoute();
@@ -92,10 +112,10 @@
   });
 
   // Gentle arrivals (below the hero only).
-  const groups = [".known-head", ".places-copy", ".owner-discovery .story-copy", ".owner-readiness .story-copy", ".closing-invite"];
+  const groups = [".known-head", ".places-copy", ".intel-title", ".intel-copy", ".owner-readiness .story-copy", ".closing-invite"];
   groups.forEach(sel => document.querySelectorAll(sel).forEach(g =>
     [...g.children].filter(c => !c.classList.contains("edge-light")).forEach((c, i) => { c.classList.add("arrive"); c.style.setProperty("--i", i); })));
-  document.querySelectorAll(".discovery-scene > img, .readiness-photo").forEach(img => img.classList.add("settle"));
+  document.querySelectorAll(".readiness-photo").forEach(img => img.classList.add("settle"));
   const arriveObserver = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
@@ -103,5 +123,6 @@
       arriveObserver.unobserve(e.target);
     });
   }, {threshold: 0.2, rootMargin: "0px 0px -6% 0px"});
-  document.querySelectorAll(".arrive, .settle").forEach(el => arriveObserver.observe(el));
+  document.querySelectorAll(".intel-note").forEach(n => n.classList.add("arrive-group"));
+  document.querySelectorAll(".arrive, .settle, .intel-note").forEach(el => arriveObserver.observe(el));
 })();
