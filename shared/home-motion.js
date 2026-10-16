@@ -50,6 +50,14 @@
       if (!intel.src.endsWith(src)) { intel.src = src; intel.load(); }
     };
     pick(); tall.addEventListener("change", pick);
+    // The note follows the loop: the collection considered, then each proposal in turn.
+    const note = document.querySelector("[data-intel] .intel-note");
+    const beats = [[0, 0], [3.25, 1], [6.65, 2], [9.25, 0]];
+    if (note && !reduce) intel.addEventListener("timeupdate", () => {
+      let b = 0;
+      for (const [t, i] of beats) if (intel.currentTime >= t) b = i;
+      if (note.dataset.beat !== String(b)) note.dataset.beat = b;
+    });
     if (!reduce && "IntersectionObserver" in window) {
       new IntersectionObserver(es => es.forEach(e => {
         if (e.isIntersecting) { intel.preload = "auto"; intel.play().catch(() => {}); } else intel.pause();

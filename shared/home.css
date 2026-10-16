@@ -407,22 +407,26 @@ body.v2-experience.home .story-band::before{display:none}
 .intel-note-item{font:400 clamp(13.5px,1vw,16px)/1.5 var(--sans)}
 .intel-note-state{font:400 clamp(13.5px,1vw,16px)/1.5 var(--sans);color:rgb(244 241 234 / 84%)}
 .intel-note-mark{margin-top:10px;font:500 10px/1.4 var(--sans);letter-spacing:2.6px;text-transform:uppercase;color:rgb(196 226 210 / 88%)}
+/* One proposal at a time, in step with the loop: the place holds, the lines beneath it change. */
+.intel-beats{display:grid}
+.intel-beat{grid-area:1/1;display:flex;flex-direction:column;align-items:flex-end;gap:6px;opacity:0;transform:translateY(4px);
+  transition:opacity .7s var(--ease-out),transform .9s var(--ease-out)}
+.intel-note[data-beat="0"] [data-for="0"],.intel-note[data-beat="1"] [data-for="1"],.intel-note[data-beat="2"] [data-for="2"]{opacity:1;transform:none}
 .motion-ready .intel-note>span{opacity:0;transform:translateY(6px);transition:opacity .9s var(--ease-out),transform 1.1s var(--ease-out)}
 .motion-ready .intel-note.is-in>span{opacity:1;transform:none}
 .motion-ready .intel-note.is-in>span:nth-child(2){transition-delay:.35s}
-.motion-ready .intel-note.is-in>span:nth-child(3){transition-delay:.7s}
-.motion-ready .intel-note.is-in>span:nth-child(4){transition-delay:1.05s}
 @media(max-width:900px){
   .intel-head{grid-template-columns:1fr;gap:20px;align-items:start}
 }
-/* Phones: a tall frame around her, the proposal beneath rather than over her. */
+/* Phones: a tall frame, the proposal beneath the picture rather than over it. */
 @media(max-width:700px){
   .intel-scene{aspect-ratio:auto;max-height:none;overflow:visible;background:var(--canvas)}
   .intel-scene::after{display:none}
   .intel-note{position:static;align-items:flex-start;text-align:left;color:var(--ink-strong);text-shadow:none;padding:22px var(--gutter) 0;background:var(--canvas)}
   .intel-note-state{color:var(--body-ink)}
   .intel-note-mark{color:var(--label-green)}
+  .intel-beat{align-items:flex-start}
   .intel-band figure{background:var(--canvas)}
   .intel-video{aspect-ratio:4/5;height:auto}
 }
-@media(prefers-reduced-motion:reduce){.motion-ready .intel-note>span{opacity:1;transform:none;transition:none}}
+@media(prefers-reduced-motion:reduce){.motion-ready .intel-note>span{opacity:1;transform:none;transition:none}.intel-beat{transition:none}}
