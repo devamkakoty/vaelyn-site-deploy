@@ -37,7 +37,7 @@
   }
 
 
-  // 03 The intelligence: the evening loop. Wide or tall source by layout;
+  // 03 The intelligence: four homes, one loop. Wide or tall source by layout;
   // plays only while in view; under reduced motion the poster stays.
   const intel = document.querySelector("[data-intel] video");
   if (intel) {
@@ -50,9 +50,9 @@
       if (!intel.src.endsWith(src)) { intel.src = src; intel.load(); }
     };
     pick(); tall.addEventListener("change", pick);
-    // The note follows the loop: the collection considered, then each proposal in turn.
+    // The note follows the loop: one home, one owner, one proposal at a time.
     const note = document.querySelector("[data-intel] .intel-note");
-    const beats = [[0, 0], [3.25, 1], [6.65, 2], [9.25, 0]];
+    const beats = [[0, 0], [3.62, 1], [7.19, 2], [11.11, 3], [15.37, 0]];
     if (note && !reduce) intel.addEventListener("timeupdate", () => {
       let b = 0;
       for (const [t, i] of beats) if (intel.currentTime >= t) b = i;
