@@ -52,7 +52,7 @@
     pick(); tall.addEventListener("change", pick);
     // The note follows the loop: one home, one owner, one proposal at a time.
     const note = document.querySelector("[data-intel] .intel-note");
-    const beats = [[0, 0], [3.62, 1], [7.19, 2], [11.11, 3], [15.37, 0]];
+    const beats = [[0, 0], [3.05, 1], [6.62, 2], [10.53, 3], [14.79, 0]];
     if (note && !reduce) intel.addEventListener("timeupdate", () => {
       let b = 0;
       for (const [t, i] of beats) if (intel.currentTime >= t) b = i;
