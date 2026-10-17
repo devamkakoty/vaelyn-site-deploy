@@ -108,7 +108,8 @@
         const current = position === index;
         record.step.classList.toggle("is-current", current);
         record.scene.classList.toggle("is-active", current);
-        record.scene.setAttribute("aria-hidden", "true");
+        record.scene.setAttribute("aria-hidden", String(!current));
+        record.scene.toggleAttribute("inert", !current);
         markers[position]?.classList.toggle("is-current", current);
       });
       document.dispatchEvent(new CustomEvent("zallia:journeychange", {
@@ -155,6 +156,7 @@
         record.placeholder.parentNode?.insertBefore(record.scene, record.placeholder.nextSibling);
         record.scene.classList.remove("is-active");
         record.scene.removeAttribute("aria-hidden");
+        record.scene.removeAttribute("inert");
         record.step.classList.remove("is-current");
       });
       markers.forEach(marker => marker.classList.remove("is-current"));
