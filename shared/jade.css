@@ -35,8 +35,7 @@
 }
 .privacy-copy h2,
 .privacy-principles h3{color:var(--white)}
-.system-page .privacy-copy .section-label,
-.privacy-principles p{color:var(--inverse-muted)}
+.system-page .privacy-copy .privacy-principles p{color:#dce2de}
 .privacy-principles li{border-color:var(--line-inverse)}
 
 @media(max-width:800px){

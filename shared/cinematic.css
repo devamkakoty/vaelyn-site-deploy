@@ -72,7 +72,7 @@
   .journey-enhanced>.system-story:nth-child(2){grid-row:2;background:var(--surface-soft)}
   .journey-enhanced>.system-story:nth-child(3){grid-row:3;background:var(--surface-stone)}
   .journey-enhanced>.system-story:nth-child(4){grid-row:4;background:var(--surface-linen);color:var(--ink)}
-  .journey-enhanced .system-copy{height:100%;min-height:0;padding:clamp(72px,8vh,112px) 13% clamp(72px,8vh,112px) var(--system-gutter)}
+  .journey-enhanced .system-copy{height:100%;min-height:0;background:inherit;padding:clamp(72px,8vh,112px) 13% clamp(72px,8vh,112px) var(--system-gutter)}
   .journey-enhanced .system-story .system-copy .section-label,
   .journey-enhanced .system-story .system-copy>p{color:var(--muted)}
   .journey-enhanced .system-copy{opacity:.62;transform:translateY(16px);

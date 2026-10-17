@@ -202,10 +202,11 @@ section{scroll-margin-top:12px}
 .trust-band h2{font-size:31px;line-height:1.15}
 .trust-band p{font-size:13px;color:var(--muted);line-height:1.7;margin-top:14px;max-width:470px}
 .trust-band .text-link{margin-top:19px;font-size:11px}
-.site-footer{background:var(--header-surface);color:var(--header-ink);padding:6px var(--gutter);border-top:1px solid var(--header-line);--focus-ring:var(--focus-light)}
-.footer-main{display:block}
+.site-footer{position:relative;isolation:isolate;overflow:hidden;background:#081510;color:#eee7db;padding:6px var(--gutter);border-top:1px solid #a8946866;--focus-ring:var(--focus-dark)}
+.site-footer::before{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(105deg,#06110dcf,#0b1b15d9),var(--jade-texture) center 46%/cover;opacity:.09;pointer-events:none}
+.footer-main{position:relative;display:block}
 .footer-brand{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0 16px}
-.footer-brand p{font:10px/1.5 var(--sans);color:#53605c;white-space:nowrap}
+.footer-brand p{font:10px/1.5 var(--sans);color:#aaa99f;white-space:nowrap}
 .site-footer .wordmark{display:flex;align-items:center;min-height:44px;font-size:24px;letter-spacing:5px}
 /* Deeper pages share the same editorial system. */
 .page-intro{padding:69px var(--gutter) 53px;max-width:none;margin:auto;background:var(--surface-deep);color:var(--white);--focus-ring:var(--focus-dark)}
