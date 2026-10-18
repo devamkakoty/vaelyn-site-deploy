@@ -129,9 +129,6 @@
 .facets-ready .known-statement-label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 @media(prefers-reduced-motion:reduce){.facets-ready .known-statement{transition:none;transform:none}}
 
-/* Home-only footer status: honest, quiet, and part of the brand line. */
-.home .footer-status{order:0;flex:1 1 auto;text-align:center;color:#53605c;white-space:normal}
-.home .footer-brand>p:last-child{order:1}
 
 @media(min-width:1700px){
   .known-lede,.known-scope{max-width:380px}
@@ -154,7 +151,6 @@
   .known-facets li+li::before{display:none}
   .known-facet{font-size:9.5px;letter-spacing:1.4px}
   .known-statement{font-size:20px}
-  .home .footer-status{order:2;flex-basis:100%;text-align:left;padding-bottom:10px}
 }
 
 /* ------------------------------------------------------------------
@@ -190,7 +186,7 @@
 /* Light sections take the canvas, so copy sits on the page itself */
 .home .known-band,.home .owner-discovery,.home .owner-physical{background:var(--canvas)}
 .home .owner-readiness,.home .readiness-scene,.home .readiness-caption{background:var(--deep)}
-.home .site-footer{background:var(--canvas)}
+/* The footer uses the site-wide midnight jade treatment. */
 
 /* The film: a full-width evergreen band, held apart from the hero */
 .home .film-band{padding-block:clamp(28px,3vw,52px)}

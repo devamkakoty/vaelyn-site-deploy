@@ -335,3 +335,18 @@
  .overview-plan{margin-top:14px;padding-top:12px}
  .overview-plan p{font-size:11px}
 }
+
+/* Chapter numbers shared with the homepage: 01 The record, 02 The rooms, 03 The intelligence, 04 Your team. */
+.system-page .label-index{font-variant-numeric:tabular-nums;letter-spacing:1px;margin-right:0;padding-right:12px;border-right:1px solid currentColor;opacity:.75}
+/* Closing invitation, as on the homepage: one quiet centred moment before the footer. */
+.system-page .closing-invite{display:flex;flex-direction:column;align-items:center;text-align:center;
+  padding:clamp(64px,7vw,112px) var(--gutter) clamp(56px,6vw,96px);background:#f0ece4;color:#1d2a26}
+.system-page .closing-invite .section-label{justify-content:center;gap:14px;font-size:14px;color:#4d675e}
+.system-page .closing-invite .section-label::before,.system-page .closing-invite .section-label::after{content:"";display:block;height:1px;width:54px;background:currentColor;opacity:.5}
+.system-page .closing-invite h2{font-size:clamp(40px,3.6vw,60px);line-height:1.12;color:#1d2a26;margin-bottom:26px}
+.system-page .closing-invite h2 span{display:block}
+.system-page .closing-invite-copy{max-width:440px;font-size:clamp(15px,1.05vw,16.5px);line-height:1.75;color:#3c4743;margin-bottom:38px;text-wrap:pretty}
+.system-page .closing-invite .outline-button{color:#173a2e;border-color:rgb(23 58 46 / 62%);min-width:250px}
+.system-page .closing-invite .outline-button:is(:hover,:focus-visible){border-color:#c4a465}
+.system-page .closing-assurance{margin-top:30px;font-size:12.5px;letter-spacing:.2px;color:#4d675e}
+@media(max-width:700px){.system-page .closing-invite .section-label::before,.system-page .closing-invite .section-label::after{display:none}}

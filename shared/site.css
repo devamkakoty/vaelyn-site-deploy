@@ -208,6 +208,10 @@ section{scroll-margin-top:12px}
 .footer-brand{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0 16px}
 .footer-brand p{font:10px/1.5 var(--sans);color:#aaa99f;white-space:nowrap}
 .site-footer .wordmark{display:flex;align-items:center;min-height:44px;font-size:24px;letter-spacing:5px}
+/* Footer status line: honest, quiet, part of the brand line; legible on the midnight footer. */
+.footer-status{order:0;flex:1 1 auto;text-align:center;white-space:normal!important}
+.footer-brand>p:last-child{order:1}
+@media(max-width:700px){.footer-status{order:2;flex-basis:100%;text-align:left!important;padding-bottom:10px}}
 /* Deeper pages share the same editorial system. */
 .page-intro{padding:69px var(--gutter) 53px;max-width:none;margin:auto;background:var(--surface-deep);color:var(--white);--focus-ring:var(--focus-dark)}
 .page-intro .eyebrow{color:var(--accent-inverse);margin-bottom:22px}
