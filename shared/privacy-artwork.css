@@ -5,11 +5,16 @@
 .privacy-approved-hero{position:relative;align-self:center;min-width:0;margin:0;background:#181a19;overflow:hidden}
 .privacy-approved-hero>img{display:block;width:100%;height:auto;object-fit:cover;object-position:center;aspect-ratio:928/633}
 .privacy-approved-intro{display:flex;flex-direction:column;justify-content:center;padding:clamp(42px,4vw,64px) clamp(34px,4.5vw,70px);background:#0b151b}
-.privacy-approved-number{display:block;color:#bca98e;font:400 15px/1.4 var(--sans);margin-bottom:26px}
-.privacy-approved-number::after{content:"";display:block;width:76px;margin-top:11px;border-top:1px solid #bca98e99}
 .privacy-approved h2{margin:0 0 34px;color:#f0ede7;font:400 66px/1.06 var(--serif);letter-spacing:0;text-wrap:balance}
+/* Two lines, as in the approved composition: each line holds together and the size follows the column. */
+.privacy-approved h2 span{display:block;white-space:nowrap}
+@media(min-width:801px){
+  .privacy-approved-intro{container-type:inline-size}
+  .privacy-approved-lead .privacy-approved-intro h2{font-size:clamp(32px,14.6cqi,62px)}
+}
 .privacy-approved-intro p{max-width:35ch;margin:0;color:#d1d2d1;font:400 17px/1.65 var(--sans);letter-spacing:0}
 .privacy-approved-intro p+p{margin-top:21px;font-size:15px}
+.privacy-approved-intro .privacy-approved-lede{max-width:30ch;text-wrap:balance}
 .privacy-approved-steps{list-style:none;width:min(calc(100% - 64px),1370px);margin:0 auto;padding:0;display:grid;grid-template-columns:minmax(0,423px) minmax(0,378px) minmax(0,421px);justify-content:space-between;gap:36px}
 .privacy-approved-step{min-width:0}
 .privacy-example{position:relative;margin:0;overflow:hidden;border:1px solid #b29f826e;background:#171915;aspect-ratio:1.75}
@@ -69,7 +74,6 @@
 @media(max-width:480px){
   .privacy-approved-intro{padding-block:38px 34px}
   .privacy-approved h2{font-size:40px}
-  .privacy-approved-number{margin-bottom:20px}
   .privacy-approved-steps{padding-top:30px}
   .privacy-example-access .access-overlay{right:38%;padding:8px 7px}
   .access-overlay>strong{font-size:10px}
