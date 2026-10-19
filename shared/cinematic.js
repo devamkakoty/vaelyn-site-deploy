@@ -6,7 +6,7 @@
 
   document.documentElement.classList.add("cinematic-ready");
   const reduce = matchMedia("(prefers-reduced-motion: reduce)");
-  const desktopJourney = matchMedia("(min-width: 1000px)");
+  const desktopJourney = matchMedia("(min-width: 860px)");
   const connection = navigator.connection;
   const constrained = () => reduce.matches || connection?.saveData;
 

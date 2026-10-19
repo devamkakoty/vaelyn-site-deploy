@@ -62,7 +62,7 @@
 /* System: one persistent visual world, with the same collection accumulating
    meaning as the copy advances. Source figures remain stacked without JS. */
 .system-journey-stage{display:none}
-@media(min-width:1000px){
+@media(min-width:860px){
   .system-journey.journey-enhanced{position:relative;display:grid;
     grid-template-columns:38% 62%;grid-template-rows:repeat(4,minmax(760px,98svh));
     background:var(--paper);isolation:isolate}
@@ -122,7 +122,7 @@
     mask-image:linear-gradient(#000,transparent)}
 }
 
-@media(max-width:999px){
+@media(max-width:859px){
   .system-journey-stage{display:none}
   .system-journey>.system-story{position:relative}
   .v2-experience .system-journey>.system-story::before{content:"";position:absolute;z-index:4;
