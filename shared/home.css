@@ -260,7 +260,7 @@ body.v2-experience.home .story-band::before{display:none}
    ------------------------------------------------------------------ */
 .home{--section-gap:clamp(88px,12vw,184px)}
 .home #main>#known{margin-top:clamp(16px,2.4vw,40px)}
-.home #main>#introduction{margin-top:clamp(16px,2.8vw,48px)}
+.home #main>#introduction{margin-top:calc(var(--section-gap) * -.4)}
 @media(max-width:700px){.home{--section-gap:clamp(64px,17vw,92px)}}
 
 /* ------------------------------------------------------------------
@@ -453,3 +453,8 @@ body.v2-experience.home .story-band::before{display:none}
   .intel-answer-note{color:var(--body-ink)}
 }
 @media(prefers-reduced-motion:reduce){.intel-beat,.intel-ask,.intel-answer{transition:none!important;transform:none!important}}
+/* Closing: three quiet elements, held close together. */
+.home .closing-invite h2{margin-bottom:30px}
+.home .closing-assurance{margin-top:22px}
+.home #main{padding-bottom:0}
+.home .closing-invite{padding-bottom:clamp(64px,6.5vw,104px)}

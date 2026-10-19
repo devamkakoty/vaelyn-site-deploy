@@ -350,3 +350,9 @@
 .system-page .closing-invite .outline-button:is(:hover,:focus-visible){border-color:#c4a465}
 .system-page .closing-assurance{margin-top:30px;font-size:12.5px;letter-spacing:.2px;color:#4d675e}
 @media(max-width:700px){.system-page .closing-invite .section-label::before,.system-page .closing-invite .section-label::after{display:none}}
+.system-page .closing-invite{padding:clamp(56px,6vw,96px) var(--gutter) clamp(52px,5.5vw,88px)}
+.system-page .closing-invite h2{margin-bottom:30px}
+.system-page .closing-assurance{margin-top:22px}
+/* Held back: what ZALLIA cannot confirm is set aside, never suggested. */
+.result-held{display:flex;align-items:baseline;gap:12px;margin:18px 0 0;padding-top:14px;border-top:1px solid var(--line-inverse);font:12px/1.5 var(--sans);color:var(--inverse-muted)}
+.result-held span{font:500 10px/1.4 var(--sans);letter-spacing:2px;text-transform:uppercase;color:#d6be8a}
