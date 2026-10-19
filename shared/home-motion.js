@@ -61,7 +61,7 @@
     if (!reduce && "IntersectionObserver" in window) {
       new IntersectionObserver(es => es.forEach(e => {
         if (e.isIntersecting) { intel.preload = "auto"; intel.play().catch(() => {}); } else intel.pause();
-      }), {threshold: 0.35}).observe(intel);
+      }), {threshold: 0.15}).observe(intel.closest("[data-intel]"));
     }
   }
   if (reduce) {

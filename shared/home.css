@@ -414,10 +414,20 @@ body.v2-experience.home .story-band::before{display:none}
 .intel-note[data-beat] [data-for] .intel-answer{transition-delay:.8s}
 /* Tablet and phone: copy, then the homes, then the question and answer. */
 @media(max-width:900px){
-  .home .intel-band{grid-template-columns:1fr;grid-template-areas:"head" "scene" "note";grid-template-rows:auto;padding-left:0}
+  /* Phones and tablets: the question and answer sit on the film itself, so the two are always seen together. */
+  .home .intel-band{grid-template-columns:1fr;grid-template-areas:"head" "scene";grid-template-rows:auto;padding-left:0}
   .intel-head{padding:0 var(--gutter) 28px}
   .intel-scene{max-height:none}
-  .intel-note{max-width:none;padding:24px var(--gutter) 0}
+  .intel-scene::after{content:"";position:absolute;inset:auto 0 0 0;height:62%;pointer-events:none;background:linear-gradient(transparent,rgb(10 12 10 / 78%) 55%)}
+  .intel-note{grid-area:scene;align-self:end;z-index:2;max-width:none;margin:0;padding:0 var(--gutter) 22px}
+  .intel-ask-line{color:#f6f3ec;font-size:23px;text-shadow:0 1px 14px rgb(0 0 0 / 60%)}
+  .intel-answer{background:rgb(14 24 20 / 72%);border-color:rgb(214 182 118 / 38%);padding:14px 16px 16px}
+  @supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.intel-answer{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}}
+  .intel-answer-head{border-bottom-color:rgb(214 182 118 / 26%)}
+  .intel-answer-head span:first-child{color:#d6be8a}
+  .intel-answer-head span+span{color:rgb(244 241 234 / 70%)}
+  .intel-answer-item{color:#f4f1ea;font-size:19px}
+  .intel-answer-note{color:rgb(244 241 234 / 82%);font-size:13px}
 }
 @media(prefers-reduced-motion:reduce){.intel-beat,.intel-ask,.intel-answer{transition:none!important;transform:none!important}}
 /* Zigzag rhythm: 04 places its photograph on the left, text on the right. */
