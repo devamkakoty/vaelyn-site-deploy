@@ -404,7 +404,7 @@ body.v2-experience.home .story-band::before{display:none}
 .intel-beat{position:absolute;inset:0;opacity:0;transition:opacity .6s var(--ease-out)}
 .intel-note[data-beat="0"] [data-for="0"],.intel-note[data-beat="1"] [data-for="1"],.intel-note[data-beat="2"] [data-for="2"],.intel-note[data-beat="3"] [data-for="3"]{opacity:1}
 .intel-ask,.intel-answer{position:absolute;bottom:clamp(30px,4.2vw,64px);opacity:0;transform:translateY(6px);transition:opacity .5s var(--ease-out),transform .7s var(--ease-out)}
-.intel-ask{display:flex;flex-direction:column;gap:10px;max-width:min(30em,42%);color:#f6f3ec;text-shadow:0 1px 18px rgb(0 0 0 / 55%)}
+.intel-ask{display:flex;flex-direction:column;gap:10px;max-width:min(30em,42%);color:#f6f3ec;text-shadow:0 1px 2px rgb(0 0 0 / 55%),0 2px 26px rgb(0 0 0 / 70%)}
 .intel-ask-place{font:500 10px/1.4 var(--sans);letter-spacing:2.6px;text-transform:uppercase;color:rgb(246 243 236 / 82%)}
 .intel-ask-line{font:400 clamp(24px,2.2vw,36px)/1.18 var(--serif);text-wrap:balance}
 .intel-answer{display:flex;flex-direction:column;gap:8px;width:clamp(250px,22vw,330px);padding:18px 22px 20px;color:#f4f1ea;
@@ -412,22 +412,21 @@ body.v2-experience.home .story-band::before{display:none}
 @supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.intel-answer{backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}}
 .intel-answer-head{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:10px;margin-bottom:4px;border-bottom:1px solid rgb(214 182 118 / 26%);
   font:500 10px/1.4 var(--sans);letter-spacing:2.6px;text-transform:uppercase;color:#d6be8a}
-.intel-answer-head span+span{color:rgb(244 241 234 / 70%);letter-spacing:1.6px}
+.intel-answer-head span+span{color:#d6be8a;letter-spacing:2.6px}
+.intel-answer-head span:first-child{color:rgb(244 241 234 / 78%)}
 .intel-answer-item{font:400 clamp(19px,1.45vw,23px)/1.25 var(--serif)}
 .intel-answer-note{font:400 13.5px/1.5 var(--sans);color:rgb(244 241 234 / 82%)}
-/* Sides: the card takes the open side of each shot; the question takes the other. */
-[data-card="r"] .intel-answer{right:var(--gutter)}
-[data-card="r"] .intel-ask{left:var(--gutter)}
-[data-card="l"] .intel-answer{left:var(--gutter)}
-[data-card="l"] .intel-ask{right:var(--gutter);text-align:right;align-items:flex-end}
+/* One reading path in every home: the question, then straight down to ZALLIA's answer, on the open side of the shot. */
+[data-card]{display:grid;grid-template-columns:clamp(290px,25vw,390px);align-content:end;justify-items:start;gap:16px;padding:0 var(--gutter) clamp(30px,4.2vw,64px)}
+[data-card] :is(.intel-ask,.intel-answer){position:static}
+[data-card="r"]{justify-content:end}
+[data-card="l"]{justify-content:start}
+[data-card] .intel-ask{max-width:none;text-align:left;align-items:flex-start}
+[data-card] .intel-answer{width:100%;box-sizing:border-box}
 .intel-note[data-beat="0"] [data-for="0"] :is(.intel-ask,.intel-answer),.intel-note[data-beat="1"] [data-for="1"] :is(.intel-ask,.intel-answer),
 .intel-note[data-beat="2"] [data-for="2"] :is(.intel-ask,.intel-answer),.intel-note[data-beat="3"] [data-for="3"] :is(.intel-ask,.intel-answer){opacity:1;transform:none}
-/* Where the owner fills one side of the frame, question and answer stack together on the open side. */
-[data-card="stack"]{display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-end;gap:18px;padding:0 var(--gutter) clamp(30px,4.2vw,64px)}
-[data-card="stack"] :is(.intel-ask,.intel-answer){position:static}
-[data-card="stack"] .intel-ask{text-align:right;align-items:flex-end;max-width:min(26em,40%)}
 .intel-note[data-beat] [data-for] .intel-ask{transition-delay:.15s}
-.intel-note[data-beat] [data-for] .intel-answer{transition-delay:1.3s}
+.intel-note[data-beat] [data-for] .intel-answer{transition-delay:.8s}
 @media(max-width:900px){
   .intel-head{grid-template-columns:1fr;gap:20px;align-items:start}
 }
@@ -447,9 +446,10 @@ body.v2-experience.home .story-band::before{display:none}
   .intel-answer{background:#fbf9f4;border-color:rgb(23 58 46 / 22%);box-shadow:none;color:var(--ink-strong);backdrop-filter:none;-webkit-backdrop-filter:none}
   .intel-answer-head{color:#8a6d3b;border-bottom-color:rgb(23 58 46 / 14%)}
   .intel-answer-head{align-self:stretch}
-  [data-card="stack"]{padding:0;justify-content:flex-start;align-items:stretch}
-  [data-card="stack"] .intel-ask{max-width:none}
+  [data-card]{display:flex;flex-direction:column;padding:0;justify-content:flex-start;align-items:stretch}
+  [data-card] .intel-ask{max-width:none}
   .intel-answer-head span+span{color:var(--label-green)}
+  .intel-answer-head span:first-child{color:#8a6d3b}
   .intel-answer-note{color:var(--body-ink)}
 }
 @media(prefers-reduced-motion:reduce){.intel-beat,.intel-ask,.intel-answer{transition:none!important;transform:none!important}}
