@@ -52,7 +52,7 @@
     pick(); tall.addEventListener("change", pick);
     // The note follows the loop: in each home the owner asks, then ZALLIA answers from the collection.
     const note = document.querySelector("[data-intel] .intel-note");
-    const beats = [[0, 0], [3.8, 1], [8.32, 2], [13.26, 3], [18.62, 0]];
+    const beats = [[0, 0], [4.55, 1], [10.02, 2], [15.98, 3], [22.44, 0]];
     if (note && !reduce) intel.addEventListener("timeupdate", () => {
       let b = 0;
       for (const [t, i] of beats) if (intel.currentTime >= t) b = i;
