@@ -36,7 +36,8 @@
   // data-cut="tall"). The <source media> attribute chooses it natively; this
   // also covers browsers that ignore media on video sources, and swaps the poster.
   const tall = matchMedia("(max-width: 700px)").matches;
-  if (tall && video.dataset.tallPoster) video.poster = video.dataset.tallPoster;
+  const poster = tall ? video.dataset.tallPoster : video.dataset.widePoster;
+  if (poster && !video.getAttribute("poster")) video.poster = poster;
   const cuts = [...video.querySelectorAll("source")];
   const wrong = cuts.filter((s) => (s.dataset.cut === "tall") !== tall);
   if (wrong.length && wrong.length < cuts.length) {
