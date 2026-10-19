@@ -550,3 +550,9 @@ body.v2-experience .site-header::after{display:none}
 .site-header .outline-button,.mobile-nav .outline-button{color:#173a2e;border-color:#173a2e}
 .text-link{color:#173a2e;border-bottom-color:rgb(23 58 46 / 42%)}
 .text-link:is(:hover,:focus-visible){color:#173a2e;border-bottom-color:#173a2e}
+/* Phones: comfortable tap targets for quiet links and the wordmark. */
+@media(max-width:700px){
+  .text-link{min-height:44px;display:inline-flex;align-items:center}
+  .site-header .wordmark{min-height:44px;display:inline-flex;align-items:center}
+  .closing-assurance{text-wrap:balance}
+}

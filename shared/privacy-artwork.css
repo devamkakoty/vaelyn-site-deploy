@@ -85,3 +85,9 @@
   .privacy-example-view strong{font-size:18px}
   .privacy-example-view span{font-size:9px}
 }
+/* Phones: keep the Team Access names readable. */
+@media(max-width:480px){
+  .privacy-example-access .access-overlay{right:36%;padding:10px 9px}
+  .access-overlay>strong{font-size:11px}
+  .access-overlay li{font-size:10.5px}
+}

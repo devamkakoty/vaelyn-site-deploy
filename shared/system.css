@@ -356,3 +356,4 @@
 /* Held back: what ZALLIA cannot confirm is set aside, never suggested. */
 .result-held{display:flex;align-items:baseline;gap:12px;margin:18px 0 0;padding-top:14px;border-top:1px solid var(--line-inverse);font:12px/1.5 var(--sans);color:var(--inverse-muted)}
 .result-held span{font:500 10px/1.4 var(--sans);letter-spacing:2px;text-transform:uppercase;color:#d6be8a}
+@media(max-width:600px){.system-prepared-note .result-plan-heading .result-title{font-size:30px}}
