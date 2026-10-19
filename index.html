@@ -56,7 +56,9 @@
 <section aria-label="Film" class="film-band" data-film="" id="film">
 <div class="film-frame">
 <!-- The film: to swap the cut, replace these three files in assets/film/ (or edit the poster and two sources here). -->
-<video aria-describedby="film-description" class="film-video" height="824" muted="" playsinline="" poster="assets/film/zallia-film-poster.webp" preload="metadata" width="1920">
+<video aria-describedby="film-description" class="film-video" height="824" muted="" playsinline="" poster="assets/film/zallia-film-poster.webp" data-tall-poster="assets/film/zallia-film-tall-poster.webp" preload="metadata" width="1920">
+<source data-cut="tall" media="(max-width: 700px)" src="assets/film/zallia-film-tall.webm" type="video/webm"/>
+<source data-cut="tall" media="(max-width: 700px)" src="assets/film/zallia-film-tall.mp4" type="video/mp4"/>
 <source src="assets/film/zallia-film.webm" type="video/webm"/>
 <source src="assets/film/zallia-film.mp4" type="video/mp4"/>
 </video>
@@ -118,15 +120,15 @@ known in full.</h2>
 <h2 id="personal-title"><span>It knows</span> <span>what is ready.</span></h2>
 </div>
 <div class="intel-copy">
-<p>Ask, and ZALLIA answers from your own collection as it stands today: where a piece is, whether it is ready, and what would suit the occasion. No searching, and nothing to chase between homes.</p>
+<p>Ask, and ZALLIA answers from your own collection as it stands today: where a piece is, whether it is ready, and what to wear with it. It already knows your fit, your favourites and the way you like to dress. The choice is always yours.</p>
 <p class="intel-examples">Use it every day, or only when it matters.</p>
 </div>
 </div>
 <div class="intel-note" data-beat="0" aria-live="off">
 <span class="intel-beats">
-<span class="intel-beat" data-for="0"><span class="intel-ask"><span class="intel-ask-line">&ldquo;Is my grey suit back from the tailor?&rdquo;</span></span><span class="intel-answer"><span class="intel-answer-head"><span>London</span><span>ZALLIA</span></span><span class="intel-answer-item">Grey flannel suit</span><span class="intel-answer-note">Returned this morning &middot; In the Dressing Room</span></span></span>
+<span class="intel-beat" data-for="0"><span class="intel-ask"><span class="intel-ask-line">&ldquo;What goes with the camel coat?&rdquo;</span></span><span class="intel-answer"><span class="intel-answer-head"><span>London</span><span>ZALLIA</span></span><span class="intel-answer-item">Cream trousers, brown cashmere knit</span><span class="intel-answer-note">A favourite pairing &middot; Both pressed and ready</span></span></span>
 <span class="intel-beat" data-for="1"><span class="intel-ask"><span class="intel-ask-line">&ldquo;Are my ski things here?&rdquo;</span></span><span class="intel-answer"><span class="intel-answer-head"><span>Courchevel</span><span>ZALLIA</span></span><span class="intel-answer-item">Ski jacket, salopettes, helmet</span><span class="intel-answer-note">Arrived from London yesterday &middot; Ready</span></span></span>
-<span class="intel-beat" data-for="2"><span class="intel-ask"><span class="intel-ask-line">&ldquo;What&rsquo;s ready for the charity dinner?&rdquo;</span></span><span class="intel-answer"><span class="intel-answer-head"><span>New York</span><span>ZALLIA</span></span><span class="intel-answer-item">Black silk gown, diamond earrings</span><span class="intel-answer-note">Gown pressed today &middot; Earrings from the safe</span></span></span>
+<span class="intel-beat" data-for="2"><span class="intel-ask"><span class="intel-ask-line">&ldquo;Where&rsquo;s my rivi&egrave;re?&rdquo;</span></span><span class="intel-answer"><span class="intel-answer-head"><span>New York</span><span>ZALLIA</span></span><span class="intel-answer-item">Diamond rivi&egrave;re necklace</span><span class="intel-answer-note">In the Dressing Room safe &middot; Ready to wear</span></span></span>
 <span class="intel-beat" data-for="3"><span class="intel-ask"><span class="intel-ask-line">&ldquo;Did everything come over from Aurora?&rdquo;</span></span><span class="intel-answer"><span class="intel-answer-head"><span>Mustique</span><span>ZALLIA</span></span><span class="intel-answer-item">Diver&rsquo;s watch, linen shirts, Panama hat</span><span class="intel-answer-note">Recognised on arrival &middot; All accounted for</span></span></span>
 </span>
 </div>

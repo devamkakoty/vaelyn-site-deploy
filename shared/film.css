@@ -49,3 +49,12 @@
   .film-band{padding-bottom:58px}
   .film-controls{top:calc(100% + 14px);bottom:auto;right:var(--gutter)}
 }
+
+/* Phones: the portrait cut of the same film (1080 / 1350), so it fills the
+   screen as a picture rather than a strip. Its captions sit lower left, which
+   leaves the lower right of the frame free for the controls. */
+@media(max-width:700px){
+  .film-band[data-film-cut="tall"]{padding-block:0}
+  .film-band[data-film-cut="tall"] .film-frame{aspect-ratio:1080/1350;max-width:calc((100svh - var(--header-height)) * 1080 / 1350)}
+  .film-band[data-film-cut="tall"] .film-controls{top:auto;bottom:14px;right:14px}
+}

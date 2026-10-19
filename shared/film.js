@@ -32,6 +32,20 @@
   let held = false;        // the visitor paused it, or motion is constrained
   let invited = false;     // the visitor pressed play themselves
 
+  // Phones get the portrait cut of the same film (its own sources, marked
+  // data-cut="tall"). The <source media> attribute chooses it natively; this
+  // also covers browsers that ignore media on video sources, and swaps the poster.
+  const tall = matchMedia("(max-width: 700px)").matches;
+  if (tall && video.dataset.tallPoster) video.poster = video.dataset.tallPoster;
+  const cuts = [...video.querySelectorAll("source")];
+  const wrong = cuts.filter((s) => (s.dataset.cut === "tall") !== tall);
+  if (wrong.length && wrong.length < cuts.length) {
+    const pickedWrong = video.currentSrc && wrong.some((s) => video.currentSrc.endsWith(s.getAttribute("src")));
+    wrong.forEach((s) => s.remove());
+    if (pickedWrong) video.load();
+  }
+  band.dataset.filmCut = tall ? "tall" : "wide";
+
   video.muted = true;
   video.loop = false;
   if (constrained()) video.preload = "none";

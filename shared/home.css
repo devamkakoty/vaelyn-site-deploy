@@ -191,6 +191,7 @@
 /* The film: a full-width evergreen band, held apart from the hero */
 .home .film-band{padding-block:clamp(28px,3vw,52px)}
 @media(max-width:480px){.home .film-band{padding-bottom:62px}}
+@media(max-width:700px){.home .film-band[data-film-cut="tall"]{padding-block:0}}
 
 @media(max-width:700px){
   .home{--section-gap:clamp(56px,15vw,80px);--h2-size:clamp(34px,9.6vw,44px);--body-size:15px}
