@@ -50,9 +50,9 @@
       if (!intel.src.endsWith(src)) { intel.src = src; intel.load(); }
     };
     pick(); tall.addEventListener("change", pick);
-    // The note follows the loop: one home, one owner, one proposal at a time.
+    // The note follows the loop: in each home the owner asks, then ZALLIA answers from the collection.
     const note = document.querySelector("[data-intel] .intel-note");
-    const beats = [[0, 0], [3.05, 1], [6.62, 2], [10.53, 3], [14.79, 0]];
+    const beats = [[0, 0], [3.8, 1], [8.32, 2], [13.26, 3], [18.62, 0]];
     if (note && !reduce) intel.addEventListener("timeupdate", () => {
       let b = 0;
       for (const [t, i] of beats) if (intel.currentTime >= t) b = i;
