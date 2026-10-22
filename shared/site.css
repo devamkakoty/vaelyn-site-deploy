@@ -578,3 +578,28 @@ dialog .preview-error:empty{display:none}
 dialog .preview-form .dialog-note{margin-top:0;text-align:center}
 .preview-thanks:focus{outline:none}
 @media(max-width:480px){.preview-form{gap:15px}.preview-field :is(input,select,textarea){font-size:16px}}
+
+/* The private preview in the site's own evergreen, with parchment type:
+   the same pairing as the film, the hero and the rooms. */
+#preview-dialog{--parch:#efe9dc;--parch-soft:rgb(239 233 220 / 80%);--parch-faint:rgb(239 233 220 / 62%);
+  --focus-ring:#e2c48a;color:var(--parch);
+  background:linear-gradient(rgb(19 48 38 / 82%),rgb(19 48 38 / 88%)),var(--jade-texture,none) center/cover,#133026;
+  box-shadow:0 0 0 1px rgb(226 196 140 / 22%),0 30px 80px rgb(0 0 0 / 35%)}
+#preview-dialog::backdrop{background:rgb(12 22 18 / 62%)}
+#preview-dialog h2{color:var(--parch)}
+#preview-dialog .eyebrow{color:#d9c08c}
+#preview-dialog p{color:var(--parch-soft)}
+#preview-dialog .dialog-close{color:var(--parch)}
+#preview-dialog .preview-field label{color:var(--parch-faint)}
+#preview-dialog .preview-field :is(input,select,textarea){color:var(--parch);border-bottom-color:rgb(239 233 220 / 34%)}
+#preview-dialog .preview-field select option{color:#252d2c;background:#efe9dc}
+#preview-dialog .preview-field select:invalid{color:var(--parch-faint)}
+#preview-dialog .preview-field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%23efe9dc' stroke-opacity='.75' stroke-width='1.4'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E")}
+#preview-dialog .preview-field :is(input,select,textarea):focus{border-bottom-color:#d9b979}
+#preview-dialog .preview-field :is(input,select,textarea):focus-visible{box-shadow:0 1px 0 0 #d9b979}
+#preview-dialog .preview-field [aria-invalid="true"]{border-bottom-color:#e39a86}
+#preview-dialog .preview-error{color:#f0b3a3}
+#preview-dialog .preview-error a{color:inherit;text-decoration:underline}
+#preview-dialog .outline-button{color:var(--parch);border-color:rgb(239 233 220 / 58%)}
+#preview-dialog .dialog-note{color:var(--parch-faint)}
+#preview-dialog input:-webkit-autofill{-webkit-text-fill-color:#efe9dc;caret-color:#efe9dc;transition:background-color 9999s 0s}
