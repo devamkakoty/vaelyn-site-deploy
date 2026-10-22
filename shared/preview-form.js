@@ -16,7 +16,7 @@
 
   function invalid() {
     let first = null;
-    for (const n of ["name", "email", "role"]) {
+    for (const n of ["name", "email"]) {
       const el = field(n);
       const ok = el.checkValidity() && el.value.trim() !== "";
       el.setAttribute("aria-invalid", String(!ok));
@@ -44,11 +44,10 @@
     e.preventDefault();
     if (field("botcheck").checked) return;
     const bad = invalid();
-    if (bad) { error.textContent = "Please add your name, email and who you are."; bad.focus(); return; }
+    if (bad) { error.textContent = "Please add your name and email."; bad.focus(); return; }
     const data = {
       name: field("name").value.trim(),
       email: field("email").value.trim(),
-      role: field("role").value,
       message: field("message").value.trim(),
       page: location.pathname.split("/").pop() || "index.html",
     };
@@ -80,7 +79,7 @@
     const body = [
       "Hello Kimberley and Dev,", "",
       "I would like to request a private preview of ZALLIA.", "",
-      `Name: ${data.name}`, `Email: ${data.email}`, `I am: ${data.role}`,
+      `Name: ${data.name}`, `Email: ${data.email}`,
       data.message ? `\n${data.message}` : "",
     ].join("\n");
     location.href = `mailto:${form.dataset.to}?subject=${encodeURIComponent("ZALLIA private preview request")}&body=${encodeURIComponent(body)}`;
