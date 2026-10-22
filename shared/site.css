@@ -556,3 +556,25 @@ body.v2-experience .site-header::after{display:none}
   .site-header .wordmark{min-height:44px;display:inline-flex;align-items:center}
   .closing-assurance{text-wrap:balance}
 }
+
+/* Private preview request: a quiet form in the site's own register. */
+.preview-form{display:grid;gap:18px;margin-top:6px}
+.preview-field{display:grid;gap:7px}
+.preview-field label{font:500 10px/1.4 var(--sans);letter-spacing:1.6px;text-transform:uppercase;color:var(--muted)}
+.preview-field label span{letter-spacing:.4px;text-transform:none;font-weight:400}
+.preview-field :is(input,select,textarea){width:100%;font:400 15px/1.5 var(--sans);color:var(--ink);background:transparent;
+  border:0;border-bottom:1px solid rgb(37 45 44 / 32%);border-radius:0;padding:8px 0 9px;transition:border-color .25s ease}
+.preview-field select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:22px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%2359635f' stroke-width='1.4'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E") right 2px center/12px 8px no-repeat}
+.preview-field textarea{resize:vertical;min-height:72px}
+.preview-field :is(input,select,textarea):focus{outline:none;border-bottom-color:#c4a465}
+.preview-field :is(input,select,textarea):focus-visible{outline:none;box-shadow:0 1px 0 0 #c4a465}
+.preview-field [aria-invalid="true"]{border-bottom-color:#9a4a3a}
+.preview-trap{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.preview-form .outline-button{justify-content:center;margin-top:8px}
+.preview-form .outline-button[disabled]{opacity:.55;cursor:progress}
+dialog .preview-error{min-height:0;margin:0;font-size:12.5px;color:#8a3f31}
+dialog .preview-error:empty{display:none}
+dialog .preview-form .dialog-note{margin-top:0;text-align:center}
+.preview-thanks:focus{outline:none}
+@media(max-width:480px){.preview-form{gap:15px}.preview-field :is(input,select,textarea){font-size:16px}}

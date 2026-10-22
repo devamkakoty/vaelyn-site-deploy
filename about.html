@@ -21,16 +21,17 @@
 <script defer="" src="assets/icons.js"></script>
 <script defer="" src="shared/site.js"></script>
 <script defer="" src="shared/imageload.js"></script>
+<script defer="" src="shared/preview-form.js"></script>
 <link href="shared/cinematic.css" rel="stylesheet"/><script defer="True" src="shared/cinematic.js"></script></head>
 <body class="inner-page about-page v2-experience">
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
 <a aria-label="Zallia home" class="wordmark" href="index.html">ZALLIA</a>
 <nav aria-label="Main navigation" class="desktop-nav"><a href="system.html">The System</a>
-<a aria-current="page" href="about.html">About</a><button class="outline-button compact" data-dialog="preview-dialog" type="button">Private introduction</button></nav>
+<a aria-current="page" href="about.html">About</a><button class="outline-button compact" data-dialog="preview-dialog" type="button">Private preview</button></nav>
 <button aria-controls="mobile-nav" aria-expanded="false" aria-label="Open navigation" class="icon-button menu-toggle" type="button"><i aria-hidden="true" data-lucide="menu"></i></button>
 <nav aria-label="Mobile navigation" class="mobile-nav" hidden="" id="mobile-nav"><a href="system.html">The System</a>
-<a aria-current="page" href="about.html">About</a><button class="outline-button" data-dialog="preview-dialog" type="button">Private introduction</button></nav>
+<a aria-current="page" href="about.html">About</a><button class="outline-button" data-dialog="preview-dialog" type="button">Private preview</button></nav>
 </header>
 <main id="main"><header class="page-intro about-intro">
 <img alt="" class="about-backdrop" decoding="async" fetchpriority="high" height="1152" loading="eager" sizes="100vw" src="assets/openings/about-1600.webp" srcset="assets/openings/about-640.webp 640w, assets/openings/about-960.webp 960w, assets/openings/about-1600.webp 1600w, assets/openings/about-2048.webp 2048w" width="2048"/>
@@ -63,18 +64,39 @@ to system.</h2><p>An engineer and technical founder, Dev took what Kimberley had
 <div class="footer-main">
 <div class="footer-brand">
 <a aria-label="Zallia home" class="wordmark" href="index.html">ZALLIA</a>
-<p class="footer-status">ZALLIA is in development, with first private installations to come.</p>
+<p class="footer-status">ZALLIA is in development, with our first private pilots now being planned.</p>
 <p>ZALLIA by Vaelyn · © 2026</p>
 </div>
 </div>
 </footer>
 <dialog aria-labelledby="preview-title" id="preview-dialog">
-<button aria-label="Close private introduction" class="icon-button dialog-close" data-close="" type="button"><i aria-hidden="true" data-lucide="x"></i></button>
-<p class="eyebrow">A private introduction</p>
-<h2 id="preview-title">Let’s talk about<br/>your collection.</h2>
-<p>A private conversation about your collection and what you would like from Zallia. For you, or the people who care for it.</p>
-<a class="outline-button" href="mailto:kimberley.g@vaelyn.co?subject=Zallia%20private%20introduction&amp;body=Hello%20Kimberley%2C%0A%0AI%27d%20like%20a%20private%20introduction%20to%20Zallia.%0A%0A">Start a conversation<i aria-hidden="true" data-lucide="arrow-up-right"></i></a>
-<p class="dialog-note">Opens your email app.<br/><a href="mailto:kimberley.g@vaelyn.co">kimberley.g@vaelyn.co</a></p>
+<button aria-label="Close" class="icon-button dialog-close" data-close="" type="button"><i aria-hidden="true" data-lucide="x"></i></button>
+<div class="preview-request" data-preview-request="">
+<p class="eyebrow">A private preview</p>
+<h2 id="preview-title">Request a<br/>private preview.</h2>
+<p>A private walkthrough of ZALLIA and how it would work across your homes. For collectors, the households and family offices who care for them, and investors.</p>
+<form class="preview-form" data-endpoint="" data-to="kimberley.g@vaelyn.co" novalidate="">
+<div class="preview-field"><label for="pv-name">Name</label><input autocomplete="name" id="pv-name" name="name" required="" type="text"/></div>
+<div class="preview-field"><label for="pv-email">Email</label><input autocomplete="email" id="pv-email" name="email" required="" type="email"/></div>
+<div class="preview-field"><label for="pv-role">You are</label><select id="pv-role" name="role" required="">
+<option disabled="" selected="" value="">Select</option>
+<option>A collector or owner</option>
+<option>A family office or household team</option>
+<option>An investor</option>
+<option>Other</option>
+</select></div>
+<div class="preview-field"><label for="pv-note">Anything you would like us to know <span>(optional)</span></label><textarea id="pv-note" name="message" rows="3"></textarea></div>
+<input aria-hidden="true" autocomplete="off" class="preview-trap" name="botcheck" tabindex="-1" type="checkbox"/>
+<p aria-live="polite" class="preview-error" role="alert"></p>
+<button class="outline-button" type="submit">Request a preview</button>
+<p class="dialog-note">Seen only by the founders. We reply personally.</p>
+</form>
+</div>
+<div class="preview-thanks" hidden="" tabindex="-1">
+<p class="eyebrow">Received</p>
+<h2>Thank you.</h2>
+<p>We will be in touch personally to arrange your preview.</p>
+</div>
 </dialog>
 </body>
 </html>
