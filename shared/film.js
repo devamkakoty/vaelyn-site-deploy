@@ -35,7 +35,7 @@
   // Phones get the portrait cut of the same film (its own sources, marked
   // data-cut="tall"). The <source media> attribute chooses it natively; this
   // also covers browsers that ignore media on video sources, and swaps the poster.
-  const tall = matchMedia("(max-width: 700px)").matches;
+  const tall = matchMedia("(max-width: 700px) and (pointer: coarse)").matches;
   const poster = tall ? video.dataset.tallPoster : video.dataset.widePoster;
   if (poster && !video.getAttribute("poster")) video.poster = poster;
   const cuts = [...video.querySelectorAll("source")];

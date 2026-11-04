@@ -34,8 +34,11 @@
   dialog.addEventListener("close", () => {
     if (!thanks.hidden) {
       form.reset(); panel.hidden = false; thanks.hidden = true;
+      thanks.querySelector(".eyebrow").textContent = "Received";
       thanks.querySelector("h2").textContent = "Thank you.";
       thanks.querySelector("p:not(.eyebrow)").textContent = "We will be in touch personally to arrange your preview.";
+      const choices = thanks.querySelector(".mail-choices");
+      if (choices) { choices.hidden = true; choices.replaceChildren(); }
     }
     error.textContent = "";
   });
@@ -82,9 +85,18 @@
       `Name: ${data.name}`, `Email: ${data.email}`,
       data.message ? `\n${data.message}` : "",
     ].join("\n");
-    location.href = `mailto:${form.dataset.to}?subject=${encodeURIComponent("ZALLIA private preview request")}&body=${encodeURIComponent(body)}`;
+    // Until the delivery key is set, the request is sent from the visitor's own
+    // email, already written out, through whichever service they use.
+    thanks.querySelector(".eyebrow").textContent = "Your request";
     thanks.querySelector("h2").textContent = "Almost there.";
-    thanks.querySelector("p:not(.eyebrow)").textContent = "Your email has opened with your request written out. Once it is sent, we will be in touch personally.";
+    thanks.querySelector("p:not(.eyebrow)").textContent = "Your request is written out. Choose how you would like to send it.";
+    const choices = thanks.querySelector(".mail-choices");
+    if (choices && window.zalliaMail) {
+      window.zalliaMail.buildChoices(choices, {to: form.dataset.to, subject: "ZALLIA private preview request", body});
+      choices.hidden = false;
+    } else {
+      location.href = `mailto:${form.dataset.to}?subject=${encodeURIComponent("ZALLIA private preview request")}&body=${encodeURIComponent(body)}`;
+    }
     done();
   });
 })();

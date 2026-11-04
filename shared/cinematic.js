@@ -361,9 +361,10 @@
 
     buttons.forEach((button, position) => {
       button.addEventListener("click", () => choose(position));
-      button.addEventListener("focus", () => choose(position));
-      button.addEventListener("pointerenter", event => {
-        if (event.pointerType === "mouse") choose(position);
+      // Only a deliberate choice (click, tap or keyboard) takes over; a mouse
+      // resting over the facets while the page scrolls does not stop the loop.
+      button.addEventListener("keydown", event => {
+        if (event.key === "Enter" || event.key === " ") choose(position);
       });
     });
 
