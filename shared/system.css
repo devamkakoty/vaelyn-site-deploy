@@ -357,3 +357,9 @@
 .result-held{display:flex;align-items:baseline;gap:12px;margin:18px 0 0;padding-top:14px;border-top:1px solid var(--line-inverse);font:12px/1.5 var(--sans);color:var(--inverse-muted)}
 .result-held span{font:500 10px/1.4 var(--sans);letter-spacing:2px;text-transform:uppercase;color:#d6be8a}
 @media(max-width:600px){.system-prepared-note .result-plan-heading .result-title{font-size:30px}}
+
+/* At a glance: four plain facts beneath the introduction. */
+.system-facts{list-style:none;margin:30px 0 0;padding:20px 0 0;border-top:1px solid rgb(217 192 140 / 26%);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 28px;max-width:520px}
+.system-facts li{position:relative;padding-left:16px;font:500 10.5px/1.5 var(--sans);letter-spacing:1.8px;text-transform:uppercase;color:rgb(239 233 220 / 78%)}
+.system-facts li::before{content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;border-radius:50%;background:#d9c08c;opacity:.8}
+@media(max-width:480px){.system-facts{grid-template-columns:1fr;gap:10px}}
