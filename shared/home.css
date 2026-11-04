@@ -388,52 +388,50 @@ body.v2-experience.home .story-band::before{display:none}
 
 /* ------------------------------------------------------------------
    03 The intelligence: text on the left, the four homes on the right.
-   The owner's question and ZALLIA's answer sit on the canvas beneath the
-   copy, never over the footage, so they read at a glance.
+   At every width the owner's question and ZALLIA's answer sit on the film
+   itself, over a soft scrim, so the two are always seen together.
    ------------------------------------------------------------------ */
 .home .intel-band{background:var(--canvas);display:grid;grid-template-columns:minmax(0,1fr) min(48vw,calc((100svh - var(--header-height) - 48px) * .8));
-  grid-template-areas:"head scene" "note scene";grid-template-rows:auto 1fr;column-gap:clamp(40px,6vw,110px);padding-left:var(--gutter);align-items:start}
-.intel-head{grid-area:head;padding:clamp(24px,3vw,48px) 0 0}
+  grid-template-areas:"head scene";column-gap:clamp(40px,6vw,110px);padding-left:var(--gutter);align-items:center}
+.intel-head{grid-area:head;padding:clamp(24px,3vw,48px) 0}
 .intel-head .section-label{margin-bottom:24px}
 .intel-head h2{font-size:var(--h2-size);line-height:1.08;color:var(--ink-strong);margin-bottom:24px}
 .intel-head h2 span{display:block}
 .intel-copy p{font-size:var(--body-size);line-height:1.7;color:var(--body-ink);max-width:420px}
 .intel-copy .intel-examples{margin-top:14px;color:var(--ink-strong);font-family:var(--serif);font-size:calc(var(--body-size) + 3px);line-height:1.5}
 .intel-scene{grid-area:scene;position:relative;margin:0;overflow:hidden;aspect-ratio:4/5;width:100%;background:#2a1d14}
+.intel-scene::after{content:"";position:absolute;inset:auto 0 0 0;height:58%;pointer-events:none;background:linear-gradient(transparent,rgb(10 12 10 / 74%) 58%)}
 .intel-video{display:block;width:100%;height:100%;object-fit:cover}
-.intel-note{grid-area:note;align-self:end;max-width:420px;margin-top:clamp(40px,5vw,72px);padding-bottom:clamp(24px,3vw,48px)}
+.intel-note{grid-area:scene;align-self:end;z-index:2;margin:0;padding:0 clamp(20px,2.4vw,40px) clamp(20px,2.4vw,36px)}
 .intel-beats{display:grid}
-.intel-beat{grid-area:1/1;display:flex;flex-direction:column;gap:16px;opacity:0;transition:opacity .6s var(--ease-out)}
+.intel-beat{grid-area:1/1;display:flex;flex-direction:column;gap:14px;opacity:0;transition:opacity .6s var(--ease-out)}
 .intel-note[data-beat="0"] [data-for="0"],.intel-note[data-beat="1"] [data-for="1"],.intel-note[data-beat="2"] [data-for="2"],.intel-note[data-beat="3"] [data-for="3"]{opacity:1}
 .intel-ask,.intel-answer{opacity:0;transform:translateY(6px);transition:opacity .5s var(--ease-out),transform .7s var(--ease-out)}
-.intel-ask-line{display:block;font:400 clamp(24px,1.9vw,30px)/1.22 var(--serif);color:var(--ink-strong);text-wrap:balance}
-.intel-answer{display:flex;flex-direction:column;gap:8px;padding:18px 22px 20px;background:#fbf9f4;border:1px solid rgb(23 58 46 / 18%)}
-.intel-answer-head{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:10px;margin-bottom:4px;border-bottom:1px solid rgb(23 58 46 / 14%);
+.intel-ask-line{display:block;font:400 clamp(22px,1.75vw,29px)/1.22 var(--serif);color:#f6f3ec;text-shadow:0 1px 14px rgb(0 0 0 / 60%);text-wrap:balance}
+.intel-answer{display:flex;flex-direction:column;gap:8px;max-width:440px;padding:clamp(14px,1.2vw,18px) clamp(16px,1.4vw,22px) clamp(16px,1.3vw,20px);
+  background:rgb(14 24 20 / 72%);border:1px solid rgb(214 182 118 / 38%)}
+@supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.intel-answer{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}}
+.intel-answer-head{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:10px;margin-bottom:4px;border-bottom:1px solid rgb(214 182 118 / 26%);
   font:500 10px/1.4 var(--sans);letter-spacing:2.6px;text-transform:uppercase}
-.intel-answer-head span:first-child{color:#8a6d3b}
-.intel-answer-head span+span{color:var(--label-green)}
-.intel-answer-item{font:400 clamp(19px,1.4vw,22px)/1.25 var(--serif);color:var(--ink-strong)}
-.intel-answer-note{font:400 13.5px/1.5 var(--sans);color:var(--body-ink)}
+.intel-answer-head span:first-child{color:#d6be8a}
+.intel-answer-head span+span{color:rgb(244 241 234 / 70%)}
+.intel-answer-item{font:400 clamp(18px,1.35vw,22px)/1.25 var(--serif);color:#f4f1ea}
+.intel-answer-note{font:400 13.5px/1.5 var(--sans);color:rgb(244 241 234 / 82%)}
 .intel-note[data-beat="0"] [data-for="0"] :is(.intel-ask,.intel-answer),.intel-note[data-beat="1"] [data-for="1"] :is(.intel-ask,.intel-answer),
 .intel-note[data-beat="2"] [data-for="2"] :is(.intel-ask,.intel-answer),.intel-note[data-beat="3"] [data-for="3"] :is(.intel-ask,.intel-answer){opacity:1;transform:none}
 .intel-note[data-beat] [data-for] .intel-ask{transition-delay:.15s}
 .intel-note[data-beat] [data-for] .intel-answer{transition-delay:.8s}
-/* Tablet and phone: copy, then the homes, then the question and answer. */
+@media(prefers-reduced-transparency:reduce),(prefers-contrast:more){.intel-answer{background:#101a16;backdrop-filter:none;-webkit-backdrop-filter:none}}
+/* Phones and narrow tablets: copy first, then the film full width. */
 @media(max-width:900px){
-  /* Phones and tablets: the question and answer sit on the film itself, so the two are always seen together. */
-  .home .intel-band{grid-template-columns:1fr;grid-template-areas:"head" "scene";grid-template-rows:auto;padding-left:0}
+  .home .intel-band{grid-template-columns:1fr;grid-template-areas:"head" "scene";padding-left:0}
   .intel-head{padding:0 var(--gutter) 28px}
-  .intel-scene{max-height:none}
-  .intel-scene::after{content:"";position:absolute;inset:auto 0 0 0;height:62%;pointer-events:none;background:linear-gradient(transparent,rgb(10 12 10 / 78%) 55%)}
-  .intel-note{grid-area:scene;align-self:end;z-index:2;max-width:none;margin:0;padding:0 var(--gutter) 22px}
-  .intel-ask-line{color:#f6f3ec;font-size:23px;text-shadow:0 1px 14px rgb(0 0 0 / 60%)}
-  .intel-answer{background:rgb(14 24 20 / 72%);border-color:rgb(214 182 118 / 38%);padding:14px 16px 16px}
-  @supports ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.intel-answer{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}}
-  .intel-answer-head{border-bottom-color:rgb(214 182 118 / 26%)}
-  .intel-answer-head span:first-child{color:#d6be8a}
-  .intel-answer-head span+span{color:rgb(244 241 234 / 70%)}
-  .intel-answer-item{color:#f4f1ea;font-size:19px}
-  .intel-answer-note{color:rgb(244 241 234 / 82%);font-size:13px}
+  .intel-scene::after{height:62%;background:linear-gradient(transparent,rgb(10 12 10 / 78%) 55%)}
+  .intel-note{padding:0 var(--gutter) 22px}
+  .intel-ask-line{font-size:23px}
+  .intel-answer{max-width:none;padding:14px 16px 16px}
+  .intel-answer-item{font-size:19px}
+  .intel-answer-note{font-size:13px}
 }
 @media(prefers-reduced-motion:reduce){.intel-beat,.intel-ask,.intel-answer{transition:none!important;transform:none!important}}
 /* Zigzag rhythm: 04 places its photograph on the left, text on the right. */
