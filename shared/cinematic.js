@@ -271,12 +271,12 @@
 
 
   /* Home, Section 3: the record of one piece, one facet at a time.
-   * One finite pass (Provenance → Service → Condition & care → Whereabouts)
-   * when the section is seen; it rests on Whereabouts. Paused when unseen or
-   * the tab is hidden, resumed where it was; the pass replays only after the
-   * visitor has moved away (over a second) and come back. A facet the visitor
-   * chooses takes over for the rest of the visit. Reduced motion / Save-Data:
-   * no auto-advance and instant switching. Without JS all four are shown. */
+   * A slow, continuous loop through the facets while the section is seen, the
+   * active facet's underline filling as it waits, so each reads as something
+   * to choose. Paused when unseen or the tab is hidden, resumed where it was.
+   * A facet the visitor chooses holds for 15 seconds, then the loop returns.
+   * Reduced motion / Save-Data: no auto-advance and instant switching.
+   * Without JS all the facets are shown. */
   function facetRecord() {
     const root = document.querySelector("[data-known-facets]");
     if (!root) return;
@@ -285,7 +285,10 @@
     const live = root.querySelector(".known-statements");
     if (!buttons.length || buttons.length !== statements.length || !live) return;
 
-    const DWELL = 6000;   // unhurried: time to read each line
+    const DWELL = 5500;   // unhurried: time to read each line
+    const RESUME_AFTER = 15000;   // a visitor's choice holds this long, then the loop returns
+    let resumeTimer = 0;
+    root.style.setProperty("--facet-dwell", `${DWELL}ms`);
     const RETURN_AFTER = 1100;
     let index = 0;
     let remaining = DWELL;   // time left on the current facet
@@ -320,18 +323,15 @@
       timer = setTimeout(() => {
         timer = 0;
         remaining = DWELL;
-        show(index + 1);
-        if (index >= buttons.length - 1) {
-          complete = true;
-          root.dataset.motionState = "complete";
-          live.setAttribute("aria-live", "polite");
-        } else schedule();
+        // A slow, continuous loop, so it is clear each facet can be chosen.
+        show((index + 1) % buttons.length);
+        schedule();
       }, remaining);
       root.dataset.motionState = "playing";
     }
 
     function play() {
-      if (chosen || complete || timer || !visible || document.hidden || constrained()) return;
+      if (chosen || timer || !visible || document.hidden || constrained()) return;
       schedule();
     }
 
@@ -352,6 +352,8 @@
     function choose(position) {
       chosen = true;
       stop();
+      clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(() => { chosen = false; remaining = DWELL; play(); }, RESUME_AFTER);
       root.dataset.motionState = "chosen";
       if (position !== index) show(position, {announce:true});
       else live.setAttribute("aria-live", "polite");

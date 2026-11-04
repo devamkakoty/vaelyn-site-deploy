@@ -621,6 +621,7 @@ dialog .preview-form .dialog-note{margin-top:0;text-align:center}
 .legal-updated{font-size:12px;color:var(--muted)}
 .legal-body h2{font-family:var(--serif);font-weight:400;font-size:clamp(22px,2vw,26px);color:var(--ink-strong,#1d2a26);margin:36px 0 10px}
 .legal-body p{font-size:15.5px;line-height:1.75;color:#3c4743;max-width:62ch}
+.legal-body p+p{margin-top:18px}
 .legal-body a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 
 /* Founders: one portrait treatment, the same shape and frame for both. */
