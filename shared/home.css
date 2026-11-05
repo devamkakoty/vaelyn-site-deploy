@@ -201,27 +201,34 @@
 body.v2-experience.home .story-band{box-shadow:none}
 body.v2-experience.home .story-band::before{display:none}
 
-/* Hero: the room leads, the words sit quietly in front of it, over soft
-   shading, so the whole room ZALLIA lives in stays in view. */
+/* Hero (option A): the words on evergreen, the room beside them.
+   Nothing overlaps, so the copy reads cleanly and the photograph leads.
+   The room keeps its 4:3 box (the mirror's lights are placed inside it) and
+   is cropped to the right panel, favouring the window and the mirror. */
 @media(min-width:801px){
-  .hero::after{background:linear-gradient(90deg,rgb(var(--scrim-rgb)/92%) 0%,rgb(var(--scrim-rgb)/86%) 22%,rgb(var(--scrim-rgb)/62%) 32%,rgb(var(--scrim-rgb)/22%) 42%,transparent 52%)}
-  .hero::before{opacity:.34;mask-image:linear-gradient(90deg,#000 0%,#000 14%,#0008 26%,transparent 42%)}
-  .hero h1{line-height:1.2;max-width:none;white-space:nowrap;top:-44px}
-  .hero-description{max-width:min(390px,28vw);min-width:340px;margin-top:8px}
-  .hero-description .lead{font-size:16.5px;line-height:1.8}
-  .hero-description p{line-height:1.85}
+  .hero{--hero-split:40%;--hero-focus:.72}
+  .hero::after{display:none}
+  .hero::before{right:auto;width:var(--hero-split);mask-image:none;opacity:.45}
+  .hero-art{left:var(--hero-split);mask-image:linear-gradient(90deg,transparent,#000 72px)}
+  .hero-architecture{width:max(100cqw,133.333333cqh);aspect-ratio:4/3;top:50%;right:auto;
+    left:calc((100cqw - max(100cqw,133.333333cqh)) * var(--hero-focus));transform:translateY(-50%);mask-image:none}
+  .hero-copy{max-width:var(--hero-split);padding-right:clamp(32px,3.5vw,64px)}
+  .hero h1{font-size:clamp(40px,3.2vw,62px);line-height:1.2;max-width:none;white-space:nowrap;top:-36px}
+  .hero-description{max-width:400px;margin-top:4px}
+  .hero-description .lead{font-size:clamp(15.5px,1.12vw,18px);line-height:1.8}
+  .hero-description p{font-size:clamp(14.5px,1.02vw,16.5px);line-height:1.85}
   .hero-description p+p{margin-top:22px}
-  .hero-photo{filter:brightness(1.06) saturate(1.03)}
 }
-@media(min-width:1700px){.hero-description{max-width:440px}.hero-description .lead{font-size:18px}}
+@media(min-width:1700px){.hero-description{max-width:460px}}
 @media(min-width:801px) and (max-width:1100px){
-  .hero::after{background:linear-gradient(90deg,rgb(var(--scrim-rgb)/93%) 0%,rgb(var(--scrim-rgb)/86%) 34%,rgb(var(--scrim-rgb)/52%) 47%,transparent 62%)}
-  .hero-description{min-width:0;max-width:360px}
+  .hero{--hero-split:46%;--hero-focus:.97}
+  .hero h1{font-size:clamp(34px,3.6vw,40px);white-space:normal}
+  .hero-description{max-width:none}
 }
 @media(max-width:800px){
   .hero h1{line-height:1.18;top:0}
   .hero-copy{padding-top:48px;padding-bottom:44px}
-  .hero-description{margin-top:30px}
+  .hero-description{margin-top:28px}
   .hero-description p{line-height:1.8}
   .hero-description p+p{margin-top:20px}
 }
@@ -454,8 +461,8 @@ body.v2-experience.home .story-band::before{display:none}
 .story-private svg{flex:none;width:15px;height:15px;color:#d9c08c}
 
 /* A steadier rhythm between sections. */
-.home{--section-gap:clamp(80px,9vw,140px)}
-@media(max-width:700px){.home{--section-gap:clamp(60px,16vw,84px)}}
+.home{--section-gap:clamp(96px,10.5vw,168px)}
+@media(max-width:700px){.home{--section-gap:clamp(68px,18.5vw,92px)}}
 
 /* 01: while the facets loop, the active underline fills over its dwell. */
 .known-facet::after{transform-origin:left center}
@@ -470,27 +477,3 @@ body.v2-experience.home .story-band::before{display:none}
 .home #main>#introduction{margin-top:0}
 
 
-/* Hero, laptop and tablet: the words in one evergreen band, then the whole
-   room beneath, uncropped, so the first thing seen is ZALLIA in place among
-   everything it looks after: watches, jewellery, leather goods, couture,
-   footwear, and the yacht in the bay. (Phones already stack this way.) */
-@media(min-width:801px){
-  .home .hero{height:auto;min-height:0;max-height:none;padding-top:var(--header-height);display:flex;flex-direction:column}
-  .home .hero::before,.home .hero::after{display:none}
-  .home .hero-copy{order:0;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);grid-template-rows:auto auto;column-gap:clamp(40px,6vw,120px);
-    align-items:end;height:auto;min-height:0;max-width:none;padding:clamp(48px,5vw,80px) var(--gutter) clamp(40px,4vw,64px);background:var(--surface-deep)}
-  .home .hero h1{grid-column:1;grid-row:1/3;align-self:end;top:0;margin:0;white-space:normal;font-size:clamp(46px,4.4vw,76px);line-height:1.06;max-width:none}
-  .home .hero-description{grid-column:2;grid-row:1;max-width:460px;min-width:0;margin:0}
-  .home .hero-actions{grid-column:2;grid-row:2;margin-top:24px}
-  .home .hero-art{position:relative;inset:auto;left:0;order:1;width:100%;height:auto;aspect-ratio:4/3;mask-image:none}
-  .home .hero-architecture{inset:0;top:0;left:0;right:auto;width:100%;height:100%;transform:none;mask-image:none}
-}
-@media(min-width:1101px){
-  .home .hero{display:grid;grid-template-columns:minmax(0,32fr) minmax(0,68fr);align-items:stretch}
-  .home .hero-copy{grid-column:1;grid-row:1;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
-    padding:clamp(40px,4vw,72px) clamp(32px,3vw,56px) clamp(40px,4vw,72px) var(--gutter)}
-  .home .hero h1{font-size:clamp(40px,3.3vw,60px);line-height:1.1}
-  .home .hero-description{max-width:380px;margin-top:28px}
-  .home .hero-actions{margin-top:28px}
-  .home .hero-art{grid-column:2;grid-row:1;align-self:start}
-}
