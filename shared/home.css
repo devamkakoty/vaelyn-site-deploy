@@ -448,42 +448,6 @@ body.v2-experience.home .story-band::before{display:none}
 .home .hero-actions .hero-preview{background:transparent;color:#efe9dc;border-color:rgb(239 233 220 / 58%);min-height:46px;justify-content:center;gap:0}
 .home .hero-actions .hero-preview:hover{background:rgb(239 233 220 / 10%);border-color:#efe9dc}
 
-/* One room: the whole room from the hero, uncropped, with what ZALLIA looks
-   after in it marked and named. A key beside it; one mark lit at a time. */
-.home .room-band{display:grid;grid-template-columns:minmax(0,38fr) minmax(0,62fr);align-items:center;column-gap:clamp(36px,4.5vw,80px);
-  padding:clamp(56px,6vw,96px) var(--gutter);color:#f4f0e6;background:radial-gradient(ellipse 50% 70% at 70% 50%,rgb(196 150 92 / 12%),transparent 70%),#120f0c}
-.room-copy .section-label{color:#e6d3a8;margin-bottom:22px}
-.room-copy h2{font-size:var(--h2-size);line-height:1.08;color:#f7f3ea;margin-bottom:20px}
-.room-copy h2 span{display:block}
-.room-copy>p:not(.section-label){font-size:var(--body-size);line-height:1.7;color:rgb(247 243 234 / 78%);max-width:400px}
-.room-key{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid rgb(230 211 168 / 18%)}
-.room-key li{border-bottom:1px solid rgb(230 211 168 / 14%)}
-.room-key button{display:flex;align-items:baseline;gap:14px;width:100%;padding:11px 0;background:none;border:0;color:inherit;text-align:left;cursor:pointer;font:inherit}
-.room-num{flex:none;width:22px;height:22px;display:inline-grid;place-items:center;border:1px solid rgb(230 211 168 / 45%);border-radius:50%;
-  font:500 10.5px/1 var(--sans);color:#e6d3a8;transform:translateY(4px);transition:background .4s ease,color .4s ease,border-color .4s ease}
-.room-text{display:block;font-size:calc(var(--body-size) - 1.5px);line-height:1.5;color:rgb(247 243 234 / 58%);transition:color .4s ease}
-.room-text strong{display:block;font-weight:400;font-family:var(--serif);font-size:calc(var(--body-size) + 3px);color:rgb(247 243 234 / 78%);transition:color .4s ease}
-.room-key li.is-current .room-num{background:#e6d3a8;color:#16120e;border-color:#e6d3a8}
-.room-key li.is-current .room-text{color:rgb(247 243 234 / 82%)}
-.room-key li.is-current .room-text strong{color:#fbf8f1}
-.room-key button:focus-visible{outline:1px solid #e6d3a8;outline-offset:2px}
-.room-scene{position:relative;margin:0;aspect-ratio:4/3;box-shadow:0 40px 90px rgb(0 0 0 / 45%)}
-.room-scene img{display:block;width:100%;height:100%;object-fit:cover}
-.room-marks{position:absolute;inset:0}
-.room-mark{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;padding:0;border:0;background:none;cursor:pointer;display:grid;place-items:center}
-.room-mark span{width:26px;height:26px;display:grid;place-items:center;border-radius:50%;font:500 11px/1 var(--sans);color:#fbf8f1;
-  background:rgb(18 15 12 / 62%);border:1px solid rgb(230 211 168 / 75%);box-shadow:0 0 0 0 rgb(230 211 168 / 0%);
-  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:background .4s ease,color .4s ease,box-shadow .6s ease,transform .4s ease}
-.room-mark.is-current span{background:#e6d3a8;color:#16120e;transform:scale(1.12);box-shadow:0 0 0 7px rgb(230 211 168 / 18%),0 0 22px rgb(232 196 122 / 45%)}
-.room-mark:focus-visible span{outline:1px solid #fbf8f1;outline-offset:3px}
-@media(prefers-reduced-motion:reduce){.room-mark span,.room-num,.room-text,.room-text strong{transition:none}}
-@media(max-width:900px){
-  .home .room-band{grid-template-columns:1fr;row-gap:28px}
-  .room-copy{display:contents}
-  .room-scene{order:1;margin:0 calc(var(--gutter) * -1);box-shadow:none}
-  .room-key{order:2;margin-top:0}
-  .room-mark span{width:22px;height:22px;font-size:10px}
-}
 /* 04: privacy, said once and quietly. */
 .home .story-copy .story-private{display:flex;align-items:center;gap:10px;margin-top:22px;padding-top:18px;border-top:1px solid rgb(239 233 220 / 16%);
   font-size:calc(var(--body-size) - 1.5px);color:rgb(239 233 220 / 78%)}
@@ -505,3 +469,28 @@ body.v2-experience.home .story-band::before{display:none}
 .home #main>#known{margin-top:0}
 .home #main>#introduction{margin-top:0}
 
+
+/* Hero, laptop and tablet: the words in one evergreen band, then the whole
+   room beneath, uncropped, so the first thing seen is ZALLIA in place among
+   everything it looks after: watches, jewellery, leather goods, couture,
+   footwear, and the yacht in the bay. (Phones already stack this way.) */
+@media(min-width:801px){
+  .home .hero{height:auto;min-height:0;max-height:none;padding-top:var(--header-height);display:flex;flex-direction:column}
+  .home .hero::before,.home .hero::after{display:none}
+  .home .hero-copy{order:0;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);grid-template-rows:auto auto;column-gap:clamp(40px,6vw,120px);
+    align-items:end;height:auto;min-height:0;max-width:none;padding:clamp(48px,5vw,80px) var(--gutter) clamp(40px,4vw,64px);background:var(--surface-deep)}
+  .home .hero h1{grid-column:1;grid-row:1/3;align-self:end;top:0;margin:0;white-space:normal;font-size:clamp(46px,4.4vw,76px);line-height:1.06;max-width:none}
+  .home .hero-description{grid-column:2;grid-row:1;max-width:460px;min-width:0;margin:0}
+  .home .hero-actions{grid-column:2;grid-row:2;margin-top:24px}
+  .home .hero-art{position:relative;inset:auto;left:0;order:1;width:100%;height:auto;aspect-ratio:4/3;mask-image:none}
+  .home .hero-architecture{inset:0;top:0;left:0;right:auto;width:100%;height:100%;transform:none;mask-image:none}
+}
+@media(min-width:1101px){
+  .home .hero{display:grid;grid-template-columns:minmax(0,32fr) minmax(0,68fr);align-items:stretch}
+  .home .hero-copy{grid-column:1;grid-row:1;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
+    padding:clamp(40px,4vw,72px) clamp(32px,3vw,56px) clamp(40px,4vw,72px) var(--gutter)}
+  .home .hero h1{font-size:clamp(40px,3.3vw,60px);line-height:1.1}
+  .home .hero-description{max-width:380px;margin-top:28px}
+  .home .hero-actions{margin-top:28px}
+  .home .hero-art{grid-column:2;grid-row:1;align-self:start}
+}

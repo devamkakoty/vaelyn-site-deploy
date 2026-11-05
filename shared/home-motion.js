@@ -135,39 +135,3 @@
   document.querySelectorAll(".arrive, .settle, .intel-note").forEach(el => arriveObserver.observe(el));
 })();
 
-/* One room: light each mark and its line in the key in turn, slowly. Paused
- * off screen or in a hidden tab; a mark or line someone chooses holds for 15
- * seconds, then the turn resumes. Reduced motion: no auto-advance. */
-(() => {
-  "use strict";
-  const root = document.querySelector("[data-room-map]");
-  if (!root) return;
-  const marks = [...root.querySelectorAll(".room-mark")];
-  const items = [...root.querySelectorAll(".room-key li")];
-  if (!marks.length || marks.length !== items.length) return;
-  const reduce = matchMedia("(prefers-reduced-motion: reduce)");
-  const DWELL = 3800, HOLD = 15000;
-  let index = 0, timer = 0, holdUntil = 0, visible = false;
-  function show(i) {
-    index = i;
-    marks.forEach((m, n) => { m.classList.toggle("is-current", n === i); m.setAttribute("aria-pressed", String(n === i)); });
-    items.forEach((li, n) => li.classList.toggle("is-current", n === i));
-  }
-  function tick() {
-    timer = 0;
-    if (!visible || document.hidden || reduce.matches) return;
-    if (performance.now() >= holdUntil) show((index + 1) % marks.length);
-    timer = setTimeout(tick, Math.max(DWELL, holdUntil - performance.now()));
-  }
-  function start() { if (!timer && visible && !reduce.matches) timer = setTimeout(tick, DWELL); }
-  function stop() { clearTimeout(timer); timer = 0; }
-  function choose(i) { holdUntil = performance.now() + HOLD; show(i); stop(); start(); }
-  marks.forEach((m, i) => m.addEventListener("click", () => choose(i)));
-  items.forEach((li, i) => li.querySelector("button").addEventListener("click", () => choose(i)));
-  show(0);
-  if ("IntersectionObserver" in window) {
-    new IntersectionObserver(([e]) => { visible = e.isIntersecting && e.intersectionRatio >= .35; visible ? start() : stop(); },
-      {threshold:[0,.35,.7]}).observe(root);
-  }
-  document.addEventListener("visibilitychange", () => document.hidden ? stop() : start());
-})();
