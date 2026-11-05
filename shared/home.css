@@ -448,26 +448,41 @@ body.v2-experience.home .story-band::before{display:none}
 .home .hero-actions .hero-preview{background:transparent;color:#efe9dc;border-color:rgb(239 233 220 / 58%);min-height:46px;justify-content:center;gap:0}
 .home .hero-actions .hero-preview:hover{background:rgb(239 233 220 / 10%);border-color:#efe9dc}
 
-/* The installation: a close view of the surface itself, centred between its
-   words and three quiet notes; a different rhythm from the sections around it. */
-.home .surface-band{position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(0,1fr) min(30vw,440px) minmax(0,1fr);
-  align-items:center;column-gap:clamp(40px,5vw,96px);padding:clamp(64px,7vw,112px) var(--gutter);color:#f4f0e6;
-  background:radial-gradient(ellipse 38% 60% at 50% 50%,rgb(196 150 92 / 16%),transparent 70%),#120f0c}
-.surface-copy .section-label{color:#e6d3a8;margin-bottom:24px}
-.surface-copy h2{font-size:var(--h2-size);line-height:1.08;color:#f7f3ea;margin-bottom:24px}
-.surface-copy h2 span{display:block;white-space:nowrap}
-.surface-copy p:not(.section-label){font-size:var(--body-size);line-height:1.7;color:rgb(247 243 234 / 78%);max-width:360px}
-.surface-scene{margin:0;aspect-ratio:860/1410;box-shadow:0 40px 90px rgb(0 0 0 / 45%)}
-.surface-scene img{display:block;width:100%;height:100%;object-fit:cover}
-.surface-notes{list-style:none;margin:0;padding:0;display:grid;gap:28px;justify-self:end;max-width:300px}
-.surface-notes li{padding-top:16px;border-top:1px solid rgb(230 211 168 / 26%);font-size:calc(var(--body-size) - 1px);line-height:1.6;color:rgb(247 243 234 / 72%)}
-.surface-notes span{display:block;margin-bottom:6px;font-family:var(--serif);font-size:calc(var(--body-size) + 4px);color:#f7f3ea}
-@media(max-width:1100px) and (min-width:901px){.surface-copy h2 span{white-space:normal}}
+/* One room: the whole room from the hero, uncropped, with what ZALLIA looks
+   after in it marked and named. A key beside it; one mark lit at a time. */
+.home .room-band{display:grid;grid-template-columns:minmax(0,38fr) minmax(0,62fr);align-items:center;column-gap:clamp(36px,4.5vw,80px);
+  padding:clamp(56px,6vw,96px) var(--gutter);color:#f4f0e6;background:radial-gradient(ellipse 50% 70% at 70% 50%,rgb(196 150 92 / 12%),transparent 70%),#120f0c}
+.room-copy .section-label{color:#e6d3a8;margin-bottom:22px}
+.room-copy h2{font-size:var(--h2-size);line-height:1.08;color:#f7f3ea;margin-bottom:20px}
+.room-copy h2 span{display:block}
+.room-copy>p:not(.section-label){font-size:var(--body-size);line-height:1.7;color:rgb(247 243 234 / 78%);max-width:400px}
+.room-key{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid rgb(230 211 168 / 18%)}
+.room-key li{border-bottom:1px solid rgb(230 211 168 / 14%)}
+.room-key button{display:flex;align-items:baseline;gap:14px;width:100%;padding:11px 0;background:none;border:0;color:inherit;text-align:left;cursor:pointer;font:inherit}
+.room-num{flex:none;width:22px;height:22px;display:inline-grid;place-items:center;border:1px solid rgb(230 211 168 / 45%);border-radius:50%;
+  font:500 10.5px/1 var(--sans);color:#e6d3a8;transform:translateY(4px);transition:background .4s ease,color .4s ease,border-color .4s ease}
+.room-text{display:block;font-size:calc(var(--body-size) - 1.5px);line-height:1.5;color:rgb(247 243 234 / 58%);transition:color .4s ease}
+.room-text strong{display:block;font-weight:400;font-family:var(--serif);font-size:calc(var(--body-size) + 3px);color:rgb(247 243 234 / 78%);transition:color .4s ease}
+.room-key li.is-current .room-num{background:#e6d3a8;color:#16120e;border-color:#e6d3a8}
+.room-key li.is-current .room-text{color:rgb(247 243 234 / 82%)}
+.room-key li.is-current .room-text strong{color:#fbf8f1}
+.room-key button:focus-visible{outline:1px solid #e6d3a8;outline-offset:2px}
+.room-scene{position:relative;margin:0;aspect-ratio:4/3;box-shadow:0 40px 90px rgb(0 0 0 / 45%)}
+.room-scene img{display:block;width:100%;height:100%;object-fit:cover}
+.room-marks{position:absolute;inset:0}
+.room-mark{position:absolute;width:44px;height:44px;margin:-22px 0 0 -22px;padding:0;border:0;background:none;cursor:pointer;display:grid;place-items:center}
+.room-mark span{width:26px;height:26px;display:grid;place-items:center;border-radius:50%;font:500 11px/1 var(--sans);color:#fbf8f1;
+  background:rgb(18 15 12 / 62%);border:1px solid rgb(230 211 168 / 75%);box-shadow:0 0 0 0 rgb(230 211 168 / 0%);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:background .4s ease,color .4s ease,box-shadow .6s ease,transform .4s ease}
+.room-mark.is-current span{background:#e6d3a8;color:#16120e;transform:scale(1.12);box-shadow:0 0 0 7px rgb(230 211 168 / 18%),0 0 22px rgb(232 196 122 / 45%)}
+.room-mark:focus-visible span{outline:1px solid #fbf8f1;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.room-mark span,.room-num,.room-text,.room-text strong{transition:none}}
 @media(max-width:900px){
-  .home .surface-band{grid-template-columns:1fr;row-gap:40px;padding:clamp(56px,10vw,80px) var(--gutter)}
-  .surface-scene{width:min(78vw,430px);justify-self:center}
-  .surface-notes{justify-self:stretch;max-width:none}
-  .surface-copy h2 span{white-space:normal}
+  .home .room-band{grid-template-columns:1fr;row-gap:28px}
+  .room-copy{display:contents}
+  .room-scene{order:1;margin:0 calc(var(--gutter) * -1);box-shadow:none}
+  .room-key{order:2;margin-top:0}
+  .room-mark span{width:22px;height:22px;font-size:10px}
 }
 /* 04: privacy, said once and quietly. */
 .home .story-copy .story-private{display:flex;align-items:center;gap:10px;margin-top:22px;padding-top:18px;border-top:1px solid rgb(239 233 220 / 16%);
