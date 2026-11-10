@@ -26,10 +26,15 @@ window.matchMedia("(min-width: 801px)").addEventListener("change", closeMenu);
 
 let dialogTrigger = null;
 document.querySelectorAll("[data-dialog]").forEach(trigger => {
-  trigger.addEventListener("click", () => {
+  trigger.addEventListener("click", event => {
+    const dialog = document.getElementById(trigger.dataset.dialog);
+    // Menu buttons are real links to the closing invitation, so they always
+    // lead somewhere; where the request form can open, it opens instead.
+    if (!dialog || typeof dialog.showModal !== "function") return;
+    event.preventDefault();
     dialogTrigger = trigger;
     closeMenu();
-    document.getElementById(trigger.dataset.dialog).showModal();
+    dialog.showModal();
   });
 });
 document.querySelectorAll("dialog").forEach(dialog => {
